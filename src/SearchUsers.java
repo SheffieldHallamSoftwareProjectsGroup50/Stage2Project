@@ -35,7 +35,7 @@ public class SearchUsers {
             data = new ArrayList<ArrayList<Object>>();
             ResultSet res = sqlStatement.executeQuery();
             {
-                // loop through the result set
+
                 while (res.next()) {
 
                     int uID = res.getInt("User_ID");

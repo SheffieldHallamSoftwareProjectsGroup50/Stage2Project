@@ -45,7 +45,6 @@ public class SearchProducts {
             data = new ArrayList<ArrayList<Object>>();
             ResultSet res = sqlStatement.executeQuery();
             {
-                // loop through the result set
                 while (res.next()) {
 
                     int pId = res.getInt("Product_ID");
@@ -101,7 +100,6 @@ public class SearchProducts {
 
         String fileName = "Stage2Database.db";
         String url = "jdbc:sqlite:" + fileName;
-        // SQLite connection string
         Connection conn = null;
         try {
             conn = DriverManager.getConnection(url);

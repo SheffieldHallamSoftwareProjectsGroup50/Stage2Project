@@ -9,7 +9,6 @@ public class InsertUser {
     public static void main (String [] args)
     {
         Scanner keyboard = new Scanner(System.in);
-        //we need to write dbconnection code here!
 
         Connection conn = connect();
 
@@ -36,7 +35,6 @@ public class InsertUser {
 
 
             PreparedStatement pstmt = conn.prepareStatement(sql);
-//pstmt.setInt(1,Id); we dont need this as we have defined this field as auto-increment and not null
             pstmt.setString(1, uFName);
             pstmt.setString(2,uLName);
             pstmt.setString(3,uEmail);
@@ -74,11 +72,9 @@ public class InsertUser {
 
         String fileName = "Stage2Database.db";
         String url = "jdbc:sqlite:" + fileName;
-        // SQLite connection string
         Connection conn = null;
         try {
             conn = DriverManager.getConnection(url);
-            System.out.println("Db connection successful!");
         } catch (SQLException e) {
             System.out.println(e.getMessage());
         }

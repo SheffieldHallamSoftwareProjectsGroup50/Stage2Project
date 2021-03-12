@@ -9,7 +9,6 @@ public class InsertWarehouse {
     public static void main (String [] args)
     {
         Scanner keyboard = new Scanner(System.in);
-        //we need to write dbconnection code here!
 
         Connection conn = connect();
 
@@ -29,7 +28,6 @@ public class InsertWarehouse {
             String sql = "INSERT INTO Warehouses (Warehouse_name,Warehouse_Location,Warehouse_AvailableSpace, Warehouse_UsedSpace) VALUES(?,?,?,?)";
 
             PreparedStatement pstmt = conn.prepareStatement(sql);
-//pstmt.setInt(1,Id); we dont need this as we have defined this field as auto-increment and not null
             pstmt.setString(1, wName);
             pstmt.setString(2, wLocation);
             pstmt.setInt(3, wAvailableSpace);
@@ -63,11 +61,9 @@ public class InsertWarehouse {
 
         String fileName = "Stage2Database.db";
         String url = "jdbc:sqlite:" + fileName;
-        // SQLite connection string
         Connection conn = null;
         try {
             conn = DriverManager.getConnection(url);
-            System.out.println("Db connection successful!");
         } catch (SQLException e) {
             System.out.println(e.getMessage());
         }

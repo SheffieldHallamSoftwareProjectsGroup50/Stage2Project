@@ -9,7 +9,6 @@ public class InsertOrders {
     public static void main (String [] args)
     {
         Scanner keyboard = new Scanner(System.in);
-        //we need to write dbconnection code here!
 
         Connection conn = connect();
 
@@ -30,7 +29,6 @@ public class InsertOrders {
 
 
             PreparedStatement pstmt = conn.prepareStatement(sql);
-//pstmt.setInt(1,Id); we dont need this as we have defined this field as auto-increment and not null
             pstmt.setString(1, oUser);
             pstmt.setString(2, oDate);
             pstmt.setString(3, oStatus);
@@ -65,11 +63,9 @@ public class InsertOrders {
 
         String fileName = "Stage2Database.db";
         String url = "jdbc:sqlite:" + fileName;
-        // SQLite connection string
         Connection conn = null;
         try {
             conn = DriverManager.getConnection(url);
-            System.out.println("Db connection successful!");
         } catch (SQLException e) {
             System.out.println(e.getMessage());
         }
