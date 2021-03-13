@@ -1,5 +1,4 @@
 import java.sql.*;
-import java.util.ArrayList;
 import java.util.Scanner;
 
 public class Menu {
@@ -24,7 +23,6 @@ public class Menu {
         }
 
     }
-
 
     public static void ManagerMenu() {
         Scanner managerChoice = new Scanner(System.in);
@@ -232,7 +230,7 @@ public class Menu {
                 "\n" +
                 "Press 3: To delete a Product\n" +
                 "\n" +
-                "Press 4: To View Products\n" +
+                "Press 4: To view Products\n" +
                 "\n" +
                 "Press 5: To return Home");
         switch (productChoice.nextInt()) {
