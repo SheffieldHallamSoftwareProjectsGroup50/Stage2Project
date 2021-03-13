@@ -12,7 +12,6 @@ public class UserLogin {
         Connection conn = null;
         try {
             conn = DriverManager.getConnection(url);
-            System.out.println("Db connection successful!");
         } catch (SQLException e) {
             System.out.println(e.getMessage());
         }
@@ -52,14 +51,26 @@ public class UserLogin {
             }
 
             if (email.equals(databaseEmail) && password.equals(databasePassword)) {
-                System.out.println("Successful Login!");
-                if (databaseRole.equals("Admin")) {
+
+                  if (databaseRole.equals("Manager")) {
                     conn.close();
-                    System.out.println("Admin Page");
+                    Menu.ManagerMenu();
                 } else if (databaseRole.equals("Customer")) {
                     conn.close();
-                    System.out.println("Customer Page");
+                      Menu.CustomerMenu();
                 }
+                  else if (databaseRole.equals("Sales")) {
+                      conn.close();
+                      Menu.SalesMenu();
+                  }
+                  else if (databaseRole.equals("Production")) {
+                      conn.close();
+                      Menu.ProductionMenu();
+                  }
+                  else if (databaseRole.equals("Purchasing")) {
+                      conn.close();
+                      Menu.PurchasingMenu();
+                  }
             } else {
                 System.out.println("Incorrect Login!");
                 Login();
@@ -71,7 +82,7 @@ public class UserLogin {
 
     }
 
-    public static void Register() {
+        public static void Register() {
 
         Scanner Input = new Scanner(System.in);
         Connection conn = connect();
