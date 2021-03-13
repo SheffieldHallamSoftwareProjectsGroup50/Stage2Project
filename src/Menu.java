@@ -108,18 +108,40 @@ public class Menu {
     }
 
     public static void PurchasingMenu() {
+        Scanner purchasingChoice = new Scanner(System.in);
+        String department = "Purchasing";
         System.out.println("Purchasing Home Page:\n" +
                 "Please select a function:\n" +
                 "\n" +
-                "Press 1: To view Product Information\n" +
+                "Press 1: To view Products\n" +
                 "\n" +
-                "Press 2: To view Warehouse Information\n" +
+                "Press 2: To view Warehouses\n" +
                 "\n" +
                 "Press 3: To manage purchases\n" +
                 "\n" +
                 "Press 4: To contact the Production Department\n" +
                 "\n" +
                 "Press 5: To log out\n");
+        switch (purchasingChoice.nextInt()) {
+            case 1:
+                ViewProducts.main(null);
+                break;
+            case 2:
+                ViewWarehouses.main(null);
+                break;
+            case 3:
+                managePurchases(department);
+                break;
+            case 4:
+                contactProduction(department);
+                break;
+            case 5:
+                logOut();
+                break;
+            default:
+                System.out.println("That was not a valid input please try again");
+                PurchasingMenu();
+        }
 
     }
 
@@ -325,6 +347,10 @@ public class Menu {
         }
 
         private static void contactPurchasing(String department){
+
+        }
+
+        private static void contactProduction(String department){
 
         }
 
