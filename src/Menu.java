@@ -146,6 +146,8 @@ public class Menu {
     }
 
     public static void SalesMenu() {
+        Scanner salesChoice = new Scanner(System.in);
+        String department = "Sales";
         System.out.println("Sales Home Page:\n" +
                 "Please Select a function:\n" +
                 "\n" +
@@ -158,10 +160,32 @@ public class Menu {
                 "Press 4: To view purchases\n" +
                 "\n" +
                 "Press 5: To log out\n");
+        switch (salesChoice.nextInt()) {
+            case 1:
+                manageInquiries(department);
+                break;
+            case 2:
+                ViewProducts.main(null);
+                break;
+            case 3:
+                ViewWarehouses.main(null);
+                break;
+            case 4:
+                ViewOrders.main(null);
+                break;
+            case 5:
+                logOut();
+                break;
+            default:
+                System.out.println("That was not a valid input please try again");
+                SalesMenu();
+        }
 
     }
 
     public static void CustomerMenu() {
+        Scanner customerChoice = new Scanner(System.in);
+        String department = "Customer";
         System.out.println("\n" +
                 "Welcome to the store:\n" +
                 "Please select a function:\n" +
@@ -175,6 +199,26 @@ public class Menu {
                 "Press 4: To view replies to inquiries\n" +
                 "\n" +
                 "Press 5: To log out");
+        switch (customerChoice.nextInt()) {
+            case 1:
+                logOut();
+                break;
+            case 2:
+                logOut();
+                break;
+            case 3:
+                logOut();
+                break;
+            case 4:
+                logOut();
+                break;
+            case 5:
+                logOut();
+                break;
+            default:
+                System.out.println("That was not a valid input please try again");
+                SalesMenu();
+        }
     }
 
     private static void manageProductInformation(String department) {
