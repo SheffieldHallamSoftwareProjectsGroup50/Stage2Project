@@ -35,11 +35,11 @@ public class Menu {
                 "\n" +
                 "Press 2: To manage Warehouse Information\n" +
                 "\n" +
-                "Press 3: To manage purchases\n" +
+                "Press 3: To manage Purchases\n" +
                 "\n" +
-                "Press 4: To manage inquiries\n" +
+                "Press 4: To manage Inquiries\n" +
                 "\n" +
-                "Press 5: To manage the user database\n" +
+                "Press 5: To manage Users\n" +
                 "\n" +
                 "Press 6: To log out\n");
         switch (managerChoice.nextInt()) {
@@ -143,7 +143,9 @@ public class Menu {
                 "\n" +
                 "Press 3: To delete a Product\n" +
                 "\n" +
-                "Press 4: To return Home");
+                "Press 4: To View Products\n" +
+                "\n" +
+                "Press 5: To return Home");
         switch (productChoice.nextInt()) {
             case 1:
                 InsertProducts.main(null);
@@ -154,6 +156,8 @@ public class Menu {
             case 3:
                 DeleteProducts.main(null);
             case 4:
+                ViewProducts.main(null);
+            case 5:
                 returnHome(department);
             default:
                 System.out.println("That was not a valid input please try again");
@@ -173,7 +177,9 @@ public class Menu {
                     "\n" +
                     "Press 3: To delete a Warehouse\n" +
                     "\n" +
-                    "Press 4: To return Home");
+                    "Press 4: To View Warehouses\n" +
+                    "\n" +
+                    "Press 5: To return Home");
             switch (warehouseChoice.nextInt()) {
                 case 1:
                     InsertWarehouse.main(null);
@@ -184,10 +190,12 @@ public class Menu {
                 case 3:
                     DeleteWarehouse.main(null);
                 case 4:
+                    ViewWarehouses.main(null);
+                case 5:
                     returnHome(department);
                 default:
                     System.out.println("That was not a valid input please try again");
-                    manageProductInformation(department);
+                    manageWarehouseInformation(department);
 
             }
 
@@ -195,19 +203,7 @@ public class Menu {
 
         private static void managePurchases (String department) {
         Scanner purchaseChoice = new Scanner(System.in);
-        System.out.println("Purchases page:\n" +
-                    "Please select a function:\n" +
-                    "\n" +
-                    "Press 1: To see the 5 most recent purchases\n" +
-                    "\n" +
-                    "Press 2: To see all purchases\n" +
-                    "\n" +
-                    "Press 3: To search for a purchase using an order number\n" +
-                    "\n" +
-                    "Press 4: To add an order\n" +
-                    "\n" +
-                    "Press 5: To return Home\n");
-            System.out.println("Warehouse Information:\n" +
+            System.out.println("Purchase Information:\n" +
                     "Please select a function:\n" +
                     "\n" +
                     "Press 1: To add a Purchase\n" +
@@ -216,7 +212,9 @@ public class Menu {
                     "\n" +
                     "Press 3: To delete a Purchase\n" +
                     "\n" +
-                    "Press 4: To return Home");
+                    "Press 4: To View Purchases\n" +
+                    "\n" +
+                    "Press 5: To return Home");
             switch (purchaseChoice.nextInt()) {
                 case 1:
                     InsertOrders.main(null);
@@ -227,10 +225,12 @@ public class Menu {
                 case 3:
                     DeleteOrder.main(null);
                 case 4:
+                    ViewOrders.main(null);
+                case 5:
                     returnHome(department);
                 default:
                     System.out.println("That was not a valid input please try again");
-                    manageProductInformation(department);
+                    managePurchases(department);
             }
 
         }
@@ -254,14 +254,36 @@ public class Menu {
         }
 
         private static void manageUserDatabase (String department) {
-            System.out.println("User database:\n" +
+        Scanner purchaseChoice = new Scanner(System.in);
+        System.out.println("User Information:\n" +
                     "Please select a function:\n" +
                     "\n" +
-                    "Press 1: To search the user database\n" +
+                    "Press 1: To add a User\n" +
                     "\n" +
-                    "Press 2: To add to the user database\n" +
+                    "Press 2: To search Users\n" +
                     "\n" +
-                    "Press 3: To return Home\n");
+                    "Press 3: To delete a User\n" +
+                    "\n" +
+                    "Press 4: To View Users\n" +
+                    "\n" +
+                    "Press 5: To return Home");
+            switch (purchaseChoice.nextInt()) {
+                case 1:
+                    InsertUser.main(null);
+                    break;
+                case 2:
+                    SearchUsers.main(null);
+                    break;
+                case 3:
+                    DeleteUsers.main(null);
+                case 4:
+                    ViewUsers.main(null);
+                case 5:
+                    returnHome(department);
+                default:
+                    System.out.println("That was not a valid input please try again");
+                    manageUserDatabase(department);
+            }
 
         }
 
@@ -272,8 +294,10 @@ public class Menu {
                 SalesMenu();
             } else if (department.equals("Production")) {
                 ProductionMenu();
+            } else if (department.equals("Purchasing")) {
+                ProductionMenu();
             } else {
-                PurchasingMenu();
+                main(null);
             }
         }
 
