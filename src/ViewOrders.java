@@ -5,7 +5,6 @@ public class ViewOrders {
     public static void main (String [] args)
     {
 
-
         Connection conn = connect();
         ArrayList<ArrayList<Object>> data;
 
@@ -17,7 +16,7 @@ public class ViewOrders {
 
             ResultSet res = stmt.executeQuery(sql);
             {
-
+                // loop through the result set
                 while (res.next()) {
 
                     int oId = res.getInt("Order_ID");
@@ -65,9 +64,11 @@ public class ViewOrders {
 
         String fileName = "Stage2Database.db";
         String url = "jdbc:sqlite:" + fileName;
+        // SQLite connection string
         Connection conn = null;
         try {
             conn = DriverManager.getConnection(url);
+            System.out.println("Db connection successful!");
         } catch (SQLException e) {
             System.out.println(e.getMessage());
         }

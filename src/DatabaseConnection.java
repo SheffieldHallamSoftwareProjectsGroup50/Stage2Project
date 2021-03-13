@@ -8,7 +8,6 @@ public class DatabaseConnection {
 
     public static void main (String [] args)
     {
-        //we need to write dbconnection code here!
 
         Connection conn = connect();
 
