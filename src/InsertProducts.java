@@ -27,10 +27,10 @@ public class InsertProducts {
             int pQuantity = keyboard.nextInt();
             System.out.println("Status: ");
             String pStatus = keyboard.nextLine();
-            System.out.println("Location: ");
-            String pLocation = keyboard.nextLine();
+            System.out.println("Availability? : ");
+            String pAvailability = keyboard.nextLine();
 
-            String sql = "INSERT INTO Products (Product_Name,Product_Category, Product_Description,Product_Supplier,Product_Price,Product_Quantity,Product_Status,Product_location) VALUES(?,?,?,?,?,?,?,?)";
+            String sql = "INSERT INTO Products (Product_Name,Product_Category, Product_Description,Product_Supplier,Product_Price,Product_Quantity,Product_Status,Availability) VALUES(?,?,?,?,?,?,?,?)";
 
             PreparedStatement pstmt = conn.prepareStatement(sql);
             pstmt.setString(1, pName);
@@ -40,7 +40,7 @@ public class InsertProducts {
             pstmt.setDouble(5, pPrice);
             pstmt.setInt(6, pQuantity);
             pstmt.setString(7, pStatus );
-            pstmt.setString(8, pLocation );
+            pstmt.setString(8, pAvailability);
 
 
 

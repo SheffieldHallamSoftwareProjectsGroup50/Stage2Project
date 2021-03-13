@@ -31,9 +31,9 @@ public class SearchProducts {
             String decision = keyboard.nextLine();
 
             if (decision.equals("Category")){
-                sql = "SELECT Product_ID,Product_Name,Product_Category,Product_Description,Product_Supplier,Product_Price,Product_Quantity,Product_Status,Product_location FROM Products WHERE Product_Category = ?";
+                sql = "SELECT Product_ID,Product_Name,Product_Category,Product_Description,Product_Supplier,Product_Price,Product_Quantity,Product_Status,Availability FROM Products WHERE Product_Category = ?";
             } else if(decision.equals("Name")){
-                sql = "SELECT Product_ID,Product_Name,Product_Category,Product_Description,Product_Supplier,Product_Price,Product_Quantity,Product_Status,Product_location FROM Products WHERE Product_Name = ?";
+                sql = "SELECT Product_ID,Product_Name,Product_Category,Product_Description,Product_Supplier,Product_Price,Product_Quantity,Product_Status,Availability FROM Products WHERE Product_Name = ?";
             } else{
                 System.out.println("Invalid input");
             }
@@ -55,7 +55,7 @@ public class SearchProducts {
                     double pPrice = res.getDouble("Product_Price");
                     int pQuantity = res.getInt("Product_Quantity");
                     String pStatus = res.getString("Product_Status");
-                    String pLocation = res.getString("Product_Location");
+                    String pAvailability = res.getString("Availability");
 
                     ArrayList<Object> rec = new ArrayList<Object>();
                     rec.add(pId);
@@ -66,7 +66,7 @@ public class SearchProducts {
                     rec.add(pPrice);
                     rec.add(pQuantity);
                     rec.add(pStatus);
-                    rec.add(pLocation);
+                    rec.add(pAvailability);
 
 
                     data.add(rec);

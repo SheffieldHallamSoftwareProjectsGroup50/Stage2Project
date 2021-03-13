@@ -9,7 +9,7 @@ public class ViewProducts {
         ArrayList<ArrayList<Object>> data;
 
         try {
-            String sql = "SELECT Product_Id,Product_Name,Product_Category,Product_Description,Product_Supplier,Product_Price,Product_Quantity,Product_Status,Product_Location FROM Products";
+            String sql = "SELECT Product_Id,Product_Name,Product_Category,Product_Description,Product_Supplier,Product_Price,Product_Quantity,Product_Status,Availability FROM Products";
 
             Statement stmt  = conn.createStatement();
             data = new ArrayList<ArrayList<Object>>();
@@ -27,7 +27,7 @@ public class ViewProducts {
                     double pPrice = res.getDouble("Product_Price");
                     int pQuantity = res.getInt("Product_Quantity");
                     String pStatus = res.getString("Product_Status");
-                    String pLocation = res.getString("Product_Location");
+                    String pAvailability = res.getString("Availability");
 
                     ArrayList<Object> rec = new ArrayList<Object>();
                     rec.add(pId);
@@ -38,7 +38,7 @@ public class ViewProducts {
                     rec.add(pPrice);
                     rec.add(pQuantity);
                     rec.add(pStatus);
-                    rec.add(pLocation);
+                    rec.add(pAvailability);
 
 
 
@@ -75,7 +75,6 @@ public class ViewProducts {
         Connection conn = null;
         try {
             conn = DriverManager.getConnection(url);
-            System.out.println("Db connection successful!");
         } catch (SQLException e) {
             System.out.println(e.getMessage());
         }
