@@ -28,6 +28,7 @@ public class Menu {
 
     public static void ManagerMenu() {
         Scanner managerChoice = new Scanner(System.in);
+        String department = "Manager";
         System.out.println("Manager Home Page:\n" +
                 "Please select a function:\n" +
                 "\n" +
@@ -44,19 +45,19 @@ public class Menu {
                 "Press 6: To log out\n");
         switch (managerChoice.nextInt()) {
             case 1:
-                manageProductInformation("Manager");
+                manageProductInformation(department);
                 break;
             case 2:
-                manageWarehouseInformation("Manager");
+                manageWarehouseInformation(department);
                 break;
             case 3:
-                managePurchases("Manager");
+                managePurchases(department);
                 break;
             case 4:
-                manageInquiries("Manager");
+                manageInquiries(department);
                 break;
             case 5:
-                manageUserDatabase("Manager");
+                manageUserDatabase(department);
                 break;
             case 6:
                 logOut();
@@ -69,6 +70,8 @@ public class Menu {
     }
 
     public static void ProductionMenu() {
+        Scanner productionChoice = new Scanner(System.in);
+        String department = "Production";
         System.out.println("Production Home Page:\n" +
                 "Please select a function:\n" +
                 "\n" +
@@ -81,6 +84,26 @@ public class Menu {
                 "Press 4: To contact the Purchasing Department\n" +
                 "\n" +
                 "Press 5: To log out\n");
+        switch (productionChoice.nextInt()) {
+            case 1:
+                manageProductInformation(department);
+                break;
+            case 2:
+                manageWarehouseInformation(department);
+                break;
+            case 3:
+                ViewOrders.main(null);
+                break;
+            case 4:
+                contactPurchasing(department);
+                break;
+            case 5:
+                logOut();
+                break;
+            default:
+                System.out.println("That was not a valid input please try again");
+                ProductionMenu();
+        }
 
     }
 
@@ -299,6 +322,10 @@ public class Menu {
             } else {
                 main(null);
             }
+        }
+
+        private static void contactPurchasing(String department){
+
         }
 
         private static void logOut () {
