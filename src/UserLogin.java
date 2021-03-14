@@ -54,22 +54,22 @@ public class UserLogin {
 
                   if (databaseRole.equals("Manager")) {
                     conn.close();
-                    Menu.ManagerMenu();
+                    Main.ManagerMenu();
                 } else if (databaseRole.equals("Customer")) {
                     conn.close();
-                      Menu.CustomerMenu();
+                      Main.CustomerMenu();
                 }
                   else if (databaseRole.equals("Sales")) {
                       conn.close();
-                      Menu.SalesMenu();
+                      Main.SalesMenu();
                   }
                   else if (databaseRole.equals("Production")) {
                       conn.close();
-                      Menu.ProductionMenu();
+                      Main.ProductionMenu();
                   }
                   else if (databaseRole.equals("Purchasing")) {
                       conn.close();
-                      Menu.PurchasingMenu();
+                      Main.PurchasingMenu();
                   }
             } else {
                 System.out.println("Incorrect Login!");
@@ -119,6 +119,7 @@ public class UserLogin {
             pstmt.setString(7,uRole);
 
             pstmt.executeUpdate();
+            Main.CustomerMenu();
 
         } catch (SQLException e) {
             System.out.println(e.getMessage());

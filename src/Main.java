@@ -1,7 +1,7 @@
 import java.sql.*;
 import java.util.Scanner;
 
-public class Menu {
+public class Main {
     public static void main(String[] args) {
         Connection conn = connect();
         Scanner mainPageChoice = new Scanner(System.in);
@@ -9,13 +9,17 @@ public class Menu {
                 "Please Login using your username and password or create a new account.\n" +
                 "\n" +
                 "Press 1: To login\n" +
-                "Press 2: To sign up");
+                "Press 2: To sign up\n" +
+                "Press 3: To End Application");
         switch (mainPageChoice.nextInt()) {
             case 1:
                 UserLogin.Login();
                 break;
             case 2:
                 UserLogin.Register();
+                break;
+            case 3:
+                System.out.println("Goodbye");
                 break;
             default:
                 System.out.println("That was not a valid input please try again");
@@ -188,18 +192,16 @@ public class Menu {
                 "Welcome to the store:\n" +
                 "Please select a function:\n" +
                 "\n" +
-                "Press 1: To search available products\n" +
+                "Press 1: To search Products\n" +
                 "\n" +
-                "Press 2: To search pre-order products\n" +
+                "Press 2: To ask for help from our Sales Team\n" +
                 "\n" +
-                "Press 3: To ask for help from our Sales Team\n" +
+                "Press 3: To view replies to inquiries\n" +
                 "\n" +
-                "Press 4: To view replies to inquiries\n" +
-                "\n" +
-                "Press 5: To log out");
+                "Press 4: To log out");
         switch (customerChoice.nextInt()) {
             case 1:
-                logOut();
+                SearchProducts.main(null);
                 break;
             case 2:
                 logOut();
@@ -210,12 +212,9 @@ public class Menu {
             case 4:
                 logOut();
                 break;
-            case 5:
-                logOut();
-                break;
             default:
                 System.out.println("That was not a valid input please try again");
-                SalesMenu();
+                CustomerMenu();
         }
     }
 
@@ -397,7 +396,7 @@ public class Menu {
         }
 
         private static void logOut () {
-
+        Main.main(null);
         }
 
         private static Connection connect () {
