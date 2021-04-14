@@ -231,7 +231,9 @@ public class Main {
                 "\n" +
                 "Press 4: To view Products\n" +
                 "\n" +
-                "Press 5: To return Home");
+                "Press 5: To edit Products\n" +
+                "\n" +
+                "Press 6: To return Home");
         switch (productChoice.nextInt()) {
             case 1:
                 InsertProducts.main(null);
@@ -244,6 +246,8 @@ public class Main {
             case 4:
                 ViewProducts.main(null);
             case 5:
+                EditProducts.main(null);
+            case 6:
                 returnHome(department);
             default:
                 System.out.println("That was not a valid input please try again");
@@ -265,7 +269,9 @@ public class Main {
                     "\n" +
                     "Press 4: To View Warehouses\n" +
                     "\n" +
-                    "Press 5: To return Home");
+                    "Press 5: To Edit Warehouses\n" +
+                    "\n" +
+                    "Press 6: To return Home");
             switch (warehouseChoice.nextInt()) {
                 case 1:
                     InsertWarehouse.main(null);
@@ -278,6 +284,8 @@ public class Main {
                 case 4:
                     ViewWarehouses.main(null);
                 case 5:
+                    EditWarehouse.main(null);
+                case 6:
                     returnHome(department);
                 default:
                     System.out.println("That was not a valid input please try again");
@@ -300,7 +308,9 @@ public class Main {
                     "\n" +
                     "Press 4: To View Purchases\n" +
                     "\n" +
-                    "Press 5: To return Home");
+                    "Press 5: To Edit Purchases\n" +
+                    "\n" +
+                    "Press 6: To return Home");
             switch (purchaseChoice.nextInt()) {
                 case 1:
                     InsertOrders.main(null);
@@ -313,6 +323,8 @@ public class Main {
                 case 4:
                     ViewOrders.main(null);
                 case 5:
+                    EditOrders.main(null);
+                case 6:
                     returnHome(department);
                 default:
                     System.out.println("That was not a valid input please try again");
@@ -352,7 +364,9 @@ public class Main {
                     "\n" +
                     "Press 4: To View Users\n" +
                     "\n" +
-                    "Press 5: To return Home");
+                    "Press 5: To Edit Users\n" +
+                    "\n" +
+                    "Press 6: To return Home");
             switch (purchaseChoice.nextInt()) {
                 case 1:
                     InsertUser.main(null);
@@ -365,6 +379,8 @@ public class Main {
                 case 4:
                     ViewUsers.main(null);
                 case 5:
+                    EditUser.main(null);
+                case 6:
                     returnHome(department);
                 default:
                     System.out.println("That was not a valid input please try again");

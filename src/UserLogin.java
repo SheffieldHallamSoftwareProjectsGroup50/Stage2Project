@@ -99,7 +99,7 @@ public class UserLogin {
         String uEmail = Input.nextLine();
         System.out.println("Password: ");
         String uPassword = Input.nextLine();
-        System.out.println("DOB: ");
+        System.out.println("DOB (dd/mm/yyyy): ");
         String uDOB = Input.nextLine();
         System.out.println("Phone Number: ");
         String uPhoneNumber = Input.nextLine();
