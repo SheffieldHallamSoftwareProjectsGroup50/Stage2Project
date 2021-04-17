@@ -204,10 +204,10 @@ public class Main {
                 SearchProducts.main(null);
                 break;
             case 2:
-                logOut();
+                //Inquiries.main(null);
                 break;
             case 3:
-                logOut();
+                //Inquiries.main(null);
                 break;
             case 4:
                 logOut();

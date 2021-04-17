@@ -6,23 +6,43 @@ import java.util.Scanner;
 
 public class Inquiries {
 
-    public static void main(String[] args) throws SQLException {
-        Scanner in = new Scanner(System.in);
-        System.out.println("Please enter the field of problem you are encountering e.g. searching products, logging in");
-        String category = in.nextLine();
-        System.out.println("Please enter the nature of your inquiry when prompted");
-        String inq = in.nextLine();
+    public static void main(String[] args) {//throws SQLException {
+        Scanner userChoice = new Scanner(System.in);
+        String category = "Empty";
+        String inq;
+        System.out.println("Please Enter What This Inquiry Is About\nPress 1: For Logging In\nPress 2: For Searching Store\nPress 3: For Other\nPress 4: To Exit");
+        switch (userChoice.nextInt()) {
+            case 1:
+                category = "Log In Error";
+                break;
+            case 2:
+                category = "Store Search Error";
+                break;
+            case 3:
+                category = "Other";
+                break;
+            case 4:
+                Main.CustomerMenu();
+                break;
+            default:
+                System.out.println("That was not a valid input please try again");
+                Inquiries.main(null);
+        }
+        System.out.println(category);
+        System.out.println("Please Enter Your Inquiry");
+        inq = userChoice.nextLine();
 
         Connection conn = connect();
 
-        try{
-        String sqlinsert = "INSERT INTO Inquiries (category, inq) VALUES(?,?)";
 
-        PreparedStatement prepst = conn.prepareStatement(sqlinsert);
-        prepst.setString(1, category);
-        prepst.setString(2, inq);
+        try {
+            String sqlinsert = "INSERT INTO Inquiries (category, inq) VALUES(?,?)";
 
-        prepst.executeUpdate();
+            PreparedStatement prepst = conn.prepareStatement(sqlinsert);
+            prepst.setString(1, category);
+            prepst.setString(2, inq);
+
+            prepst.executeUpdate();
 
 
         } catch (SQLException e) {
@@ -36,7 +56,10 @@ public class Inquiries {
                 System.out.println(ex.getMessage());
             }
         }
+
     }
+
+
         public static Connection connect () {
 
             String fileName = "Stage2Database.db";
