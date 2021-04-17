@@ -170,7 +170,7 @@ public class EditUser {
     public static void userDOB() {
         Connection conn = connect();
 
-        System.out.println("Please enter a new date of birth (dd/mm/yyyy): ");
+        System.out.println("Please enter a new date of birth (DD/MM/YYYY): ");
         String uDOB = Input.nextLine();
         String sql = "UPDATE Users SET User_DOB = ? WHERE User_Email = ?";
         try

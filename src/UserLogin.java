@@ -1,8 +1,18 @@
 import java.sql.*;
+import java.text.SimpleDateFormat;
 import java.util.Scanner;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
+import java.util.Date;
+import java.text.ParseException;
+import java.text.DateFormat;
+
 
 public class UserLogin {
 
+    public static void main (String [] args) {
+        Register();
+    }
 
     private static Connection connect(){
 
@@ -95,14 +105,45 @@ public class UserLogin {
         String uFName = Input.nextLine();
         System.out.println("Last Name: ");
         String uLName = Input.nextLine();
-        System.out.println("Email: ");
-        String uEmail = Input.nextLine();
+
+        String uEmail;
+        int i = 0;
+        do {
+            System.out.println("Email: ");
+            uEmail = Input.nextLine();
+            if (isEmailValid(uEmail))
+                i++;
+            else
+                System.out.println("\nThe email you have used is not valid. Please try again.\n");
+        }
+        while (i==0);
+
         System.out.println("Password: ");
         String uPassword = Input.nextLine();
-        System.out.println("DOB (dd/mm/yyyy): ");
-        String uDOB = Input.nextLine();
-        System.out.println("Phone Number: ");
-        String uPhoneNumber = Input.nextLine();
+
+        String uDOB;
+        int i2 = 0;
+        do {
+            System.out.println("DOB (DD/MM/YYYY): ");
+            uDOB = Input.nextLine();
+            if (isDateValid(uDOB))
+                i2++;
+            else
+                System.out.println("\nThe date of birth you have entered is not valid. Please try again.\n");
+        }
+        while (i2==0);
+
+        String uPhoneNumber;
+        int i3 = 0;
+        do {
+            System.out.println("Phone Number: ");
+            uPhoneNumber = Input.nextLine();
+            if (isPhoneNumberValid(uPhoneNumber))
+                i3++;
+            else
+                System.out.println("\nThe phone number you have entered is not valid. Please try again.\n ");
+        }
+        while (i3==0);
 
         String uRole = "Customer";
 
@@ -114,7 +155,7 @@ public class UserLogin {
             pstmt.setString(2,uLName);
             pstmt.setString(3,uEmail);
             pstmt.setString(4,uPassword);
-            pstmt.setString(5,uDOB);
+            pstmt.setString(5, uDOB);
             pstmt.setString(6,uPhoneNumber);
             pstmt.setString(7,uRole);
 
@@ -132,6 +173,33 @@ public class UserLogin {
                 System.out.println(ex.getMessage());
             }
         }
+    }
+
+    public static boolean isEmailValid(String email)
+    {
+        String emailRegex = "^[a-zA-Z0-9_+&*-]+(?:\\."+
+                "[a-zA-Z0-9_+&*-]+)*@" +
+                "(?:[a-zA-Z0-9-]+\\.)+[a-z" +
+                "A-Z]{2,7}$";
+
+        Pattern pattern = Pattern.compile(emailRegex);
+        if (email == null)
+            return false;
+        return pattern.matcher(email).matches();
+    }
+
+    public static boolean isDateValid(String date) {
+        String dateRegex = "(^(((0[1-9]|1[0-9]|2[0-8])[\\/](0[1-9]|1[012]))|((29|30|31)[\\/](0[13578]|1[02]))|((29|30)[\\/](0[4,6,9]|11)))[\\/](19|[2-9][0-9])\\d\\d$)|(^29[\\/]02[\\/](19|[2-9][0-9])(00|04|08|12|16|20|24|28|32|36|40|44|48|52|56|60|64|68|72|76|80|84|88|92|96)$)";
+        Pattern pattern = Pattern.compile(dateRegex);
+        Matcher matcher = pattern.matcher((CharSequence)date);
+        return matcher.matches();
+    }
+
+    public static boolean isPhoneNumberValid(String phoneNumber) {
+        String numberRegex = "^(((\\+44\\s?\\d{4}|\\(?0\\d{4}\\)?)\\s?\\d{3}\\s?\\d{3})|((\\+44\\s?\\d{3}|\\(?0\\d{3}\\)?)\\s?\\d{3}\\s?\\d{4})|((\\+44\\s?\\d{2}|\\(?0\\d{2}\\)?)\\s?\\d{4}\\s?\\d{4}))(\\s?\\#(\\d{4}|\\d{3}))?$";
+        Pattern pattern = Pattern.compile(numberRegex);
+        Matcher matcher = pattern.matcher((CharSequence)phoneNumber);
+        return matcher.matches();
     }
 }
 
