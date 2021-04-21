@@ -26,8 +26,9 @@ public class InsertProducts {
             System.out.println("Quantity: ");
             int pQuantity = keyboard.nextInt();
             System.out.println("Status: ");
+            String pStatus1 = keyboard.nextLine();
             String pStatus = keyboard.nextLine();
-            System.out.println("Availability? : ");
+            System.out.println("Availability: ");
             String pAvailability = keyboard.nextLine();
 
             String sql = "INSERT INTO Products (Product_Name,Product_Category, Product_Description,Product_Supplier,Product_Price,Product_Quantity,Product_Status,Availability) VALUES(?,?,?,?,?,?,?,?)";

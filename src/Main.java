@@ -14,10 +14,8 @@ public class Main {
         switch (mainPageChoice.nextInt()) {
             case 1:
                 UserLogin.Login();
-                break;
             case 2:
                 UserLogin.Register();
-                break;
             case 3:
                 System.out.println("Goodbye");
                 break;
@@ -204,10 +202,10 @@ public class Main {
                 SearchProducts.main(null);
                 break;
             case 2:
-                //Inquiries.main(null);
+                Inquiries.inquire();
                 break;
             case 3:
-                //Inquiries.main(null);
+                Inquiries.viewInquiries();
                 break;
             case 4:
                 logOut();
@@ -243,12 +241,16 @@ public class Main {
                 break;
             case 3:
                 DeleteProducts.main(null);
+                break;
             case 4:
                 ViewProducts.main(null);
+                break;
             case 5:
                 EditProducts.main(null);
+                break;
             case 6:
                 returnHome(department);
+                break;
             default:
                 System.out.println("That was not a valid input please try again");
                 manageProductInformation(department);
@@ -281,12 +283,16 @@ public class Main {
                     break;
                 case 3:
                     DeleteWarehouse.main(null);
+                    break;
                 case 4:
                     ViewWarehouses.main(null);
+                    break;
                 case 5:
                     EditWarehouse.main(null);
+                    break;
                 case 6:
                     returnHome(department);
+                    break;
                 default:
                     System.out.println("That was not a valid input please try again");
                     manageWarehouseInformation(department);
@@ -320,12 +326,16 @@ public class Main {
                     break;
                 case 3:
                     DeleteOrder.main(null);
+                    break;
                 case 4:
                     ViewOrders.main(null);
+                    break;
                 case 5:
                     EditOrders.main(null);
+                    break;
                 case 6:
                     returnHome(department);
+                    break;
                 default:
                     System.out.println("That was not a valid input please try again");
                     managePurchases(department);
@@ -334,21 +344,34 @@ public class Main {
         }
 
         private static void manageInquiries (String department) {
+            Scanner inquiriesChoice = new Scanner(System.in);
             System.out.println("Inquiries Page:\n" +
-                    "Unread inquiries 10\n" +
-                    "Listing inquiries from oldest to newest\n" +
-                    "\n" +
-                    "\"Hello do you know when the wooden desk with cast \n" +
-                    "iron accents will be available to purchase? I noticed it was on the \n" +
-                    "pre-order list and wondered when I would be able to buy \n" +
-                    "it for my mother.\"\n" +
-                    "\n" +
-                    "Press 1: To write a reply\n" +
-                    "\n" +
-                    "Press 2: To ignore (and state reason)\n" +
-                    "\n" +
-                    "Press 3: To return Home\n");
-
+                    "Press 1: To View Inquiries\n" +
+                    "Press 2: To Reply \n" +
+                    "Press 3: To Return Home\n");
+            switch (inquiriesChoice.nextInt()) {
+                case 1:
+                    Inquiries.viewInquiries();
+                    break;
+                case 2:
+                    Inquiries.reply();
+                    break;
+                case 3:
+                    DeleteUsers.main(null);
+                    break;
+                case 4:
+                    ViewUsers.main(null);
+                    break;
+                case 5:
+                    EditUser.main(null);
+                    break;
+                case 6:
+                    returnHome(department);
+                    break;
+                default:
+                    System.out.println("That was not a valid input please try again");
+                    manageUserDatabase(department);
+            }
         }
 
         private static void manageUserDatabase (String department) {
@@ -376,12 +399,16 @@ public class Main {
                     break;
                 case 3:
                     DeleteUsers.main(null);
+                    break;
                 case 4:
                     ViewUsers.main(null);
+                    break;
                 case 5:
                     EditUser.main(null);
+                    break;
                 case 6:
                     returnHome(department);
+                    break;
                 default:
                     System.out.println("That was not a valid input please try again");
                     manageUserDatabase(department);
@@ -398,6 +425,8 @@ public class Main {
                 ProductionMenu();
             } else if (department.equals("Purchasing")) {
                 ProductionMenu();
+            } else if (department.equals("Customer")) {
+                    CustomerMenu();
             } else {
                 main(null);
             }
