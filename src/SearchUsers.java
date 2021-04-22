@@ -101,12 +101,13 @@ public class SearchUsers {
 
     public static void printData (ArrayList<ArrayList<Object>> data)
     {
+        System.out.print("User ID: User FName:  User LName:     User Email:           User Password:   User DOB:    User PhoneNumber:  User Role:\n");
         for (int i=0; i<data.size(); i++)
         {
             for (int j=0; j<data.get(i).size(); j++)
             {
                 System.out.print(data.get(i).get(j));
-                System.out.print(" ");
+                System.out.print("        ");
             }
             System.out.println();
         }

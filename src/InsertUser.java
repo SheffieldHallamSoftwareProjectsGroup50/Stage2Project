@@ -9,7 +9,7 @@ public class InsertUser {
     public static void main (String [] args)
     {
         Scanner keyboard = new Scanner(System.in);
-
+        Scanner userChoice = new Scanner(System.in);
         Connection conn = connect();
 
         try {
@@ -29,8 +29,27 @@ public class InsertUser {
             String uDOB = keyboard.nextLine();
             System.out.println("Phone Number: ");
             String uPhoneNumber = keyboard.nextLine();
-            System.out.println("User Role: ");
-            String uRole = keyboard.nextLine();
+            System.out.println("User Role:\nPress 1: For Sales\nPress 2: For Production\nPress 3: For Manager\nPress 4: For Customer\nPress 5: For Purchasing");
+            String uRole = "";
+            switch (userChoice.nextInt()) {
+                case 1:
+                    uRole = "Sales";
+                    break;
+                case 2:
+                    uRole = "Production";
+                    break;
+                case 3:
+                    uRole = "Manager";
+                    break;
+                case 4:
+                    uRole = "Customer";
+                    break;
+                case 5:
+                    uRole = "Purchasing";
+                    break;
+                default:
+                    System.out.println("That was not a valid input please try again");
+            }
 
 
 

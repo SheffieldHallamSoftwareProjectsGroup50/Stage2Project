@@ -96,12 +96,13 @@ public class SearchOrders {
 
     public static void printData (ArrayList<ArrayList<Object>> data)
     {
+        System.out.print("Order ID:   User ID:      Order Date:          Order Status:     Extra Comments:\n");
         for (int i=0; i<data.size(); i++)
         {
             for (int j=0; j<data.get(i).size(); j++)
             {
                 System.out.print(data.get(i).get(j));
-                System.out.print(" ");
+                System.out.print("           ");
             }
             System.out.println();
         }

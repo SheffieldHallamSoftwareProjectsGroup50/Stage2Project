@@ -17,7 +17,7 @@ public class SearchProducts {
     }
 
     public void queryProducts(String Search){
-
+        Scanner searchChoice = new Scanner(System.in);
         Connection conn = connect();
 
         ArrayList<ArrayList<Object>> data;
@@ -27,17 +27,23 @@ public class SearchProducts {
             String sql = null;
             Scanner keyboard = new Scanner(System.in);
 
-            System.out.println("Search in Name or Category?");
-            String decision = keyboard.nextLine();
+            System.out.println("Press 1: To Search By Name\nPress 2: To Search By Category");
+            String decision = "";
+            switch (searchChoice.nextInt()) {
+                case 1:
+                    decision = "Name";
+                    break;
+                case 2:
+                    decision = "Category";
+                default:
+                    System.out.println("Invalid input please try again");
+            }
 
             if (decision.equals("Category")){
                 sql = "SELECT Product_ID,Product_Name,Product_Category,Product_Description,Product_Supplier,Product_Price,Product_Quantity,Product_Status,Availability FROM Products WHERE Product_Category = ?";
-            } else if(decision.equals("Name")){
+            } else {//(decision.equals("Name")){
                 sql = "SELECT Product_ID,Product_Name,Product_Category,Product_Description,Product_Supplier,Product_Price,Product_Quantity,Product_Status,Availability FROM Products WHERE Product_Name = ?";
-            } else{
-                System.out.println("Invalid input");
             }
-
             PreparedStatement sqlStatement  = conn.prepareStatement(sql);
 
             sqlStatement.setString(1,Search);
@@ -112,12 +118,13 @@ public class SearchProducts {
 
     public static void printData (ArrayList<ArrayList<Object>> data)
     {
+        System.out.print("Product ID:  Product Name:  Product Category:  Product Description:  Product Supplier:  Product Price:  Product Quantity:  Product Status:  Availability:\n");
         for (int i=0; i<data.size(); i++)
         {
             for (int j=0; j<data.get(i).size(); j++)
             {
                 System.out.print(data.get(i).get(j));
-                System.out.print(" ");
+                System.out.print("              ");
             }
             System.out.println();
         }

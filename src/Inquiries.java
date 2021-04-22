@@ -4,11 +4,9 @@ import java.util.Scanner;
 
 public class Inquiries {
 
-    public static void main (String [] args)
-    {
-        //inquire();
-        //viewInquiries();
-        //reply();
+    public static void  main (String [] args){
+        viewInquiries();
+        viewReplies();
 
     }
     public static void inquire() {
@@ -165,6 +163,52 @@ public class Inquiries {
         }
     }
 
+    public static void viewReplies () {
+
+        Connection conn = connect();
+        ArrayList<ArrayList<Object>> data;
+
+        try {
+            String sql = "SELECT Category,Reply_Text  FROM Replies";
+
+            Statement stmt  = conn.createStatement();
+            data = new ArrayList<ArrayList<Object>>();
+
+            ResultSet res = stmt.executeQuery(sql);
+            {
+                // loop through the result set
+                while (res.next()) {
+
+                    String Category = res.getString("Category");
+                    String Reply_Text = res.getString("Reply_Text");
+
+                    ArrayList<Object> rec = new ArrayList<Object>();
+                    rec.add(Category);
+                    rec.add(Reply_Text);
+
+
+
+                    data.add(rec);
+
+                }
+            }
+
+            printData(data);
+
+        } catch (SQLException e) {
+            System.out.println(e.getMessage());
+        } finally {
+            try {
+                if (conn != null) {
+                    conn.close();
+                }
+            } catch (SQLException ex) {
+                System.out.println(ex.getMessage());
+            }
+        }
+
+    }
+
 
         public static Connection connect () {
 
@@ -182,15 +226,17 @@ public class Inquiries {
 
     public static void printData (ArrayList<ArrayList<Object>> data)
     {
+        System.out.println("Category:                           Text:");
         for (int i=0; i<data.size(); i++)
         {
             for (int j=0; j<data.get(i).size(); j++)
             {
                 System.out.print(data.get(i).get(j));
-                System.out.print(" ");
+                System.out.print("                                  ");
             }
             System.out.println();
         }
+        System.out.println("\n");
     }
     }
 

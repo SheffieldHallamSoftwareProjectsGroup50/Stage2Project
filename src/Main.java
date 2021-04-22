@@ -14,8 +14,10 @@ public class Main {
         switch (mainPageChoice.nextInt()) {
             case 1:
                 UserLogin.Login();
+                break;
             case 2:
                 UserLogin.Register();
+                break;
             case 3:
                 System.out.println("Goodbye");
                 break;
@@ -66,6 +68,7 @@ public class Main {
                 System.out.println("That was not a valid input please try again");
                 ManagerMenu();
         }
+
 
     }
 
@@ -214,6 +217,7 @@ public class Main {
                 System.out.println("That was not a valid input please try again");
                 CustomerMenu();
         }
+
     }
 
     private static void manageProductInformation(String department) {
@@ -256,6 +260,7 @@ public class Main {
                 manageProductInformation(department);
 
         }
+        returnHome(department);
     }
 
         private static void manageWarehouseInformation (String department) {
@@ -298,6 +303,7 @@ public class Main {
                     manageWarehouseInformation(department);
 
             }
+            returnHome(department);
 
         }
 
@@ -340,6 +346,7 @@ public class Main {
                     System.out.println("That was not a valid input please try again");
                     managePurchases(department);
             }
+            returnHome(department);
 
         }
 
@@ -357,21 +364,13 @@ public class Main {
                     Inquiries.reply();
                     break;
                 case 3:
-                    DeleteUsers.main(null);
-                    break;
-                case 4:
-                    ViewUsers.main(null);
-                    break;
-                case 5:
-                    EditUser.main(null);
-                    break;
-                case 6:
                     returnHome(department);
                     break;
                 default:
                     System.out.println("That was not a valid input please try again");
                     manageUserDatabase(department);
             }
+            returnHome(department);
         }
 
         private static void manageUserDatabase (String department) {
@@ -413,6 +412,7 @@ public class Main {
                     System.out.println("That was not a valid input please try again");
                     manageUserDatabase(department);
             }
+            returnHome(department);
 
         }
 
@@ -425,19 +425,18 @@ public class Main {
                 ProductionMenu();
             } else if (department.equals("Purchasing")) {
                 ProductionMenu();
-            } else if (department.equals("Customer")) {
-                    CustomerMenu();
             } else {
                 main(null);
             }
         }
 
         private static void contactPurchasing(String department){
+        System.out.println("To Contact The Purchasing Department please use InventoryPurchasing@gmail.com");
 
         }
 
         private static void contactProduction(String department){
-
+        System.out.println("To Contact The Purchasing Department please use InventoryProduction@gmail.com");
         }
 
         private static void logOut () {

@@ -96,12 +96,13 @@ public class SearchWarehouses {
 
     public static void printData (ArrayList<ArrayList<Object>> data)
     {
+        System.out.print("Warehouse ID:  Warehouse Name:     Warehouse Location:      Available Space: Used Space\n");
         for (int i=0; i<data.size(); i++)
         {
             for (int j=0; j<data.get(i).size(); j++)
             {
                 System.out.print(data.get(i).get(j));
-                System.out.print(" ");
+                System.out.print("              ");
             }
             System.out.println();
         }
