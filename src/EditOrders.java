@@ -50,7 +50,6 @@ public class EditOrders {
                 "Press 5: Return to purchases\n");
 
         int choice;
-        do {
             choice = Input.nextInt();
             Input.nextLine();
             switch (choice) {
@@ -72,7 +71,6 @@ public class EditOrders {
                     System.out.println("That was not a valid input please try again\n");
                     editOrder();
             }
-        } while (choice < 6);
     }
 
     public static void orderUser() {

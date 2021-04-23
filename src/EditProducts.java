@@ -58,7 +58,6 @@ public class EditProducts {
                 "Press 9: Return to manage product information\n");
 
         int choice;
-        do {
             choice = Input.nextInt();
             Input.nextLine();
             switch (choice) {
@@ -92,7 +91,7 @@ public class EditProducts {
                     System.out.println("That was not a valid input please try again\n");
                     editProduct();
             }
-        } while(choice < 10);
+
     }
 
     public static void productName() {

@@ -208,7 +208,7 @@ public class Main {
                 Inquiries.inquire();
                 break;
             case 3:
-                Inquiries.viewInquiries();
+                Inquiries.viewReplies();
                 break;
             case 4:
                 logOut();

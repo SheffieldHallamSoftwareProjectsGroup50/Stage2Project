@@ -56,7 +56,6 @@ public class EditUser {
                 "Press 8: Return to user information\n");
 
         int choice;
-        do {
             choice = Input.nextInt();
             Input.nextLine();
             switch (choice) {
@@ -87,7 +86,7 @@ public class EditUser {
                     System.out.println("That was not a valid input please try again\n");
                     editUser();
             }
-        } while(choice < 9);
+
     }
 
     public static void userFName() {

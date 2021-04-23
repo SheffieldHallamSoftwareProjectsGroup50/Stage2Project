@@ -50,7 +50,6 @@ public class EditWarehouse {
                 "Press 5: Return to warehouse information\n");
 
         int choice;
-        do {
             choice = Input.nextInt();
             Input.nextLine();
             switch (choice) {
@@ -72,7 +71,6 @@ public class EditWarehouse {
                     System.out.println("That was not a valid input please try again\n");
                     editWarehouse();
             }
-        } while (choice < 6);
     }
 
     public static void warehouseName() {
