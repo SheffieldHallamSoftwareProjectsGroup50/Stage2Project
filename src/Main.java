@@ -1,10 +1,11 @@
 import java.sql.*;
 import java.util.Scanner;
-
+//The main menu system is linked to all the other classes, methods and functions.
 public class Main {
     public static void main(String[] args) {
         Connection conn = connect();
         Scanner mainPageChoice = new Scanner(System.in);
+        //This will prompt the user to sign in, login, or just stop the application.
         System.out.println("Hello there, this is an Inventory Management Application.\n" +
                 "Please Login using your username and password or create a new account.\n" +
                 "\n" +
@@ -29,6 +30,7 @@ public class Main {
     }
 
     public static void ManagerMenu() {
+        //If the user is a manager they will be greeted with this menu. This will connect them to other sub menus for further functionalities, or they can return to the main menu.
         Scanner managerChoice = new Scanner(System.in);
         String department = "Manager";
         System.out.println("Manager Home Page:\n" +
@@ -73,6 +75,7 @@ public class Main {
     }
 
     public static void ProductionMenu() {
+        //If the user is in production they will be greeted with this menu. This will connect them to other sub menus for further functionalities, or they can return to the main menu.
         Scanner productionChoice = new Scanner(System.in);
         String department = "Production";
         System.out.println("Production Home Page:\n" +
@@ -111,6 +114,7 @@ public class Main {
     }
 
     public static void PurchasingMenu() {
+        //If the user is in production they will be greeted with this menu. This will connect them to other sub menus for further functionalities, or they can return to the main menu.
         Scanner purchasingChoice = new Scanner(System.in);
         String department = "Purchasing";
         System.out.println("Purchasing Home Page:\n" +
@@ -149,6 +153,7 @@ public class Main {
     }
 
     public static void SalesMenu() {
+        //If the user is in sales they will be greeted with this menu. This will connect them to other sub menus for further functionalities, or they can return to the main menu.
         Scanner salesChoice = new Scanner(System.in);
         String department = "Sales";
         System.out.println("Sales Home Page:\n" +
@@ -187,6 +192,7 @@ public class Main {
     }
 
     public static void CustomerMenu() {
+        //If the user is a customer they will be greeted with this menu. This will connect them to other sub menus for further functionalities, or they can return to the main menu.
         Scanner customerChoice = new Scanner(System.in);
         String department = "Customer";
         System.out.println("\n" +
@@ -221,6 +227,7 @@ public class Main {
     }
 
     private static void manageProductInformation(String department) {
+        //This will connect with the Products java classes where the user can manage the Products table in the database. Or they can return to the previous menu.
         Scanner productChoice = new Scanner(System.in);
         System.out.println("Product Information:\n" +
                 "Please select a function:\n" +
@@ -264,6 +271,7 @@ public class Main {
     }
 
         private static void manageWarehouseInformation (String department) {
+        //This will connect with the Warehouse java classes where the user can manage the Warehouse table in the database. Or they can return to the previous menu.
         Scanner warehouseChoice = new Scanner(System.in);
             System.out.println("Warehouse Information:\n" +
                     "Please select a function:\n" +
@@ -308,6 +316,7 @@ public class Main {
         }
 
         private static void managePurchases (String department) {
+        //This will connect with the Purchases java classes where the user can manage the Purchases table in the database. Or they can return to the previous menu.
         Scanner purchaseChoice = new Scanner(System.in);
             System.out.println("Purchase Information:\n" +
                     "Please select a function:\n" +
@@ -351,6 +360,7 @@ public class Main {
         }
 
         private static void manageInquiries (String department) {
+        //This menu connects to Inquiries class where the user can manage the inquiries table in the database.
             Scanner inquiriesChoice = new Scanner(System.in);
             System.out.println("Inquiries Page:\n" +
                     "Press 1: To View Inquiries\n" +
@@ -374,6 +384,7 @@ public class Main {
         }
 
         private static void manageUserDatabase (String department) {
+        //This will connect with the User java classes where the user can manage the Users table in the database. Or they can return to the previous menu.
         Scanner purchaseChoice = new Scanner(System.in);
         System.out.println("User Information:\n" +
                     "Please select a function:\n" +
@@ -417,6 +428,7 @@ public class Main {
         }
 
         private static void returnHome(String department){
+        //This will return the User to their department's menu.
             if (department.equals("Manager")) {
                 ManagerMenu();
             } else if (department.equals("Sales")) {
@@ -431,20 +443,24 @@ public class Main {
         }
 
         private static void contactPurchasing(String department){
+        //For external contact using company emails
         System.out.println("To Contact The Purchasing Department please use InventoryPurchasing@gmail.com");
-
+        returnHome(department);
         }
 
         private static void contactProduction(String department){
+        //For external contact using company emails
         System.out.println("To Contact The Purchasing Department please use InventoryProduction@gmail.com");
+        returnHome(department);
         }
 
         private static void logOut () {
+        //This will take the user back to the main menu.
         Main.main(null);
         }
 
         private static Connection connect () {
-
+            //This connects the java class to the database.
             String fileName = "Stage2Database.db";
             String url = "jdbc:sqlite:" + fileName;
             // SQLite connection string
