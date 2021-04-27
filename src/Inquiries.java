@@ -60,6 +60,7 @@ public class Inquiries {
                 System.out.println(ex.getMessage());
             }
         }
+        Main.CustomerMenu();
     }
 
     //Function to view all the inquiries
@@ -195,6 +196,7 @@ public class Inquiries {
                 System.out.println(ex.getMessage());
             }
         }
+        Main.CustomerMenu();
     }
 
     //Database connection function

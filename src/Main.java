@@ -22,6 +22,7 @@ public class Main {
                 break;
             case 3:
                 System.out.println("Goodbye");
+                System.exit(0);
                 break;
             default:
                 System.out.println("That was not a valid input please try again");

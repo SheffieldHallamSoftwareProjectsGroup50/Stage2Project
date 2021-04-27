@@ -73,12 +73,13 @@ public class ViewProducts {
     //function to display the products to the user
     public static void printData (ArrayList<ArrayList<Object>> data)
     {
+     System.out.print("Product ID:  Product Name:  Product Category:  Product Description:  Product Supplier:  Product Price:  Product Quantity:  Product Status:  Availability:\n");
         for (int i=0; i<data.size(); i++)
         {
             for (int j=0; j<data.get(i).size(); j++)
             {
                 System.out.print(data.get(i).get(j));
-                System.out.print(" ");
+                System.out.print("              ");
             }
             System.out.println();
         }

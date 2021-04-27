@@ -88,6 +88,7 @@ public class SearchProducts {
                 System.out.println(ex.getMessage());
             }
         }
+        Main.CustomerMenu();
     }
 
 //database connection function
