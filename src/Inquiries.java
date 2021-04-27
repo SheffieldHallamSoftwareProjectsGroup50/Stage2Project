@@ -3,16 +3,17 @@ import java.util.ArrayList;
 import java.util.Scanner;
 
 public class Inquiries {
-
-    public static void  main (String [] args){
+    //main function that calls to view the Inquiries
+    public static void main(String[] args) {
         viewInquiries();
         viewReplies();
-
     }
+
+    //Function that sends the inquiry to the database
     public static void inquire() {
         Scanner userChoice = new Scanner(System.in);
         String category = "Empty";
-
+        //Specifies a category for the inquire
         System.out.println("Please Enter What This Inquiry Is About\nPress 1: Logging In\nPress 2: Searching Store\nPress 3: Other\nPress 4: To Exit");
         switch (userChoice.nextInt()) {
             case 1:
@@ -28,6 +29,7 @@ public class Inquiries {
                 Main.CustomerMenu();
                 break;
             default:
+                //data validation
                 System.out.println("That was not a valid input please try again");
                 Inquiries.inquire();
         }
@@ -35,19 +37,18 @@ public class Inquiries {
         System.out.println("Please Enter Your Inquiry:");
         userChoice.nextLine();
         String inq = userChoice.nextLine();
+        //Database connection
         Connection conn = connect();
 
-
         try {
+            //Insertion of the category for the inquiry string
             String sqlinsert = "INSERT INTO Inquiries (Category, Inq) VALUES(?,?)";
 
             PreparedStatement prepst = conn.prepareStatement(sqlinsert);
             prepst.setString(1, category);
             prepst.setString(2, inq);
-
+            //Execution of the insertion string
             prepst.executeUpdate();
-
-
         } catch (SQLException e) {
             System.out.println(e.getMessage());
         } finally {
@@ -59,58 +60,51 @@ public class Inquiries {
                 System.out.println(ex.getMessage());
             }
         }
-
     }
 
+    //Function to view all the inquiries
+    public static void viewInquiries() {
+        //Database connection
+        Connection conn = connect();
+        ArrayList<ArrayList<Object>> data;
 
+        try {
+            //String to view the inquiries
+            String sql = "SELECT Category,Inq  FROM Inquiries";
 
-       public static void viewInquiries () {
+            Statement stmt = conn.createStatement();
+            data = new ArrayList<ArrayList<Object>>();
 
-           Connection conn = connect();
-           ArrayList<ArrayList<Object>> data;
+            ResultSet res = stmt.executeQuery(sql);
+            {
+                // loop through the result set
+                while (res.next()) {
 
-           try {
-               String sql = "SELECT Category,Inq  FROM Inquiries";
+                    String Category = res.getString("Category");
+                    String Inquiry = res.getString("Inq");
 
-               Statement stmt  = conn.createStatement();
-               data = new ArrayList<ArrayList<Object>>();
+                    ArrayList<Object> rec = new ArrayList<Object>();
+                    rec.add(Category);
+                    rec.add(Inquiry);
+                    data.add(rec);
+                }
+            }
+            printData(data);
+        } catch (SQLException e) {
+            System.out.println(e.getMessage());
+        } finally {
+            try {
+                if (conn != null) {
+                    conn.close();
+                }
+            } catch (SQLException ex) {
+                System.out.println(ex.getMessage());
+            }
+        }
+    }
 
-               ResultSet res = stmt.executeQuery(sql);
-               {
-                   // loop through the result set
-                   while (res.next()) {
-
-                       String Category = res.getString("Category");
-                       String Inquiry = res.getString("Inq");
-
-                       ArrayList<Object> rec = new ArrayList<Object>();
-                       rec.add(Category);
-                       rec.add(Inquiry);
-
-
-
-                       data.add(rec);
-
-                   }
-               }
-
-               printData(data);
-
-           } catch (SQLException e) {
-               System.out.println(e.getMessage());
-           } finally {
-               try {
-                   if (conn != null) {
-                       conn.close();
-                   }
-               } catch (SQLException ex) {
-                   System.out.println(ex.getMessage());
-               }
-           }
-
-       }
-
-    public static void reply () {
+    //function to allow the user to reply to an inquiry
+    public static void reply() {
         Scanner userChoice = new Scanner(System.in);
         String category = "Empty";
 
@@ -137,10 +131,10 @@ public class Inquiries {
         System.out.println("Please Enter Your Reply");
         userChoice.nextLine();
         String reply = userChoice.nextLine();
+        //Database connection
         Connection conn = connect();
-
-
         try {
+            //Insertion string
             String sqlinsert = "INSERT INTO Replies (Category, Reply_Text) VALUES(?,?)";
 
             PreparedStatement prepst = conn.prepareStatement(sqlinsert);
@@ -149,7 +143,6 @@ public class Inquiries {
 
             prepst.executeUpdate();
 
-
         } catch (SQLException e) {
             System.out.println(e.getMessage());
         } finally {
@@ -163,22 +156,23 @@ public class Inquiries {
         }
     }
 
-    public static void viewReplies () {
-
+    //Function for the user to view all the replies
+    public static void viewReplies() {
+        //Database connection
         Connection conn = connect();
         ArrayList<ArrayList<Object>> data;
 
         try {
+            //Selection string to get the viewable data
             String sql = "SELECT Category,Reply_Text  FROM Replies";
 
-            Statement stmt  = conn.createStatement();
+            Statement stmt = conn.createStatement();
             data = new ArrayList<ArrayList<Object>>();
 
             ResultSet res = stmt.executeQuery(sql);
             {
                 // loop through the result set
                 while (res.next()) {
-
                     String Category = res.getString("Category");
                     String Reply_Text = res.getString("Reply_Text");
 
@@ -186,15 +180,10 @@ public class Inquiries {
                     rec.add(Category);
                     rec.add(Reply_Text);
 
-
-
                     data.add(rec);
-
                 }
             }
-
             printData(data);
-
         } catch (SQLException e) {
             System.out.println(e.getMessage());
         } finally {
@@ -206,31 +195,26 @@ public class Inquiries {
                 System.out.println(ex.getMessage());
             }
         }
-
     }
 
-
-        public static Connection connect () {
-
-            String fileName = "Stage2Database.db";
-            String url = "jdbc:sqlite:" + fileName;
-            Connection conn = null;
-            try {
-                conn = DriverManager.getConnection(url);
-            } catch (SQLException e) {
-                System.out.println(e.getMessage());
-            }
-            return conn;
-
+    //Database connection function
+    public static Connection connect() {
+        String fileName = "Stage2Database.db";
+        String url = "jdbc:sqlite:" + fileName;
+        Connection conn = null;
+        try {
+            conn = DriverManager.getConnection(url);
+        } catch (SQLException e) {
+            System.out.println(e.getMessage());
         }
+        return conn;
+    }
 
-    public static void printData (ArrayList<ArrayList<Object>> data)
-    {
+    //Function to displays all the data that wants to be viewed
+    public static void printData(ArrayList<ArrayList<Object>> data) {
         System.out.println("Category:                           Text:");
-        for (int i=0; i<data.size(); i++)
-        {
-            for (int j=0; j<data.get(i).size(); j++)
-            {
+        for (int i = 0; i < data.size(); i++) {
+            for (int j = 0; j < data.get(i).size(); j++) {
                 System.out.print(data.get(i).get(j));
                 System.out.print("                                  ");
             }
@@ -238,6 +222,4 @@ public class Inquiries {
         }
         System.out.println("\n");
     }
-    }
-
-
+}

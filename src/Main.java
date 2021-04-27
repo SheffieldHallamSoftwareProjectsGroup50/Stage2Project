@@ -3,6 +3,7 @@ import java.util.Scanner;
 //The main menu system is linked to all the other classes, methods and functions.
 public class Main {
     public static void main(String[] args) {
+        //Database connection
         Connection conn = connect();
         Scanner mainPageChoice = new Scanner(System.in);
         //This will prompt the user to sign in, login, or just stop the application.
@@ -110,7 +111,6 @@ public class Main {
                 System.out.println("That was not a valid input please try again");
                 ProductionMenu();
         }
-
     }
 
     public static void PurchasingMenu() {

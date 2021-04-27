@@ -9,8 +9,15 @@ public class EditUser {
     public static String Email;
     static public Scanner Input = new Scanner(System.in);
 
-    public static Connection connect(){
+    public static void main (String [] args) {
+        //Function to get user details to edit
+        email();
+        //Edit function to edit the details
+        editUser();
+    }
 
+//database connection function
+    public static Connection connect(){
         String fileName = "Stage2Database.db";
         String url = "jdbc:sqlite:" + fileName;
         Connection conn = null;
@@ -21,20 +28,14 @@ public class EditUser {
         }
         return conn;
     }
-
+//function to get the users details
     public static String email() {
         System.out.println("\nPlease enter the email of the user you would like to edit: \n");
         Email = Input.nextLine();
         return Email;
     }
-
-    public static void main (String [] args) {
-        email();
-        editUser();
-    }
-
+//function to find what part of the details are wanting to be edited
     public static void editUser() {
-
         System.out.println("\nYou are currently editing " + Email + ".\n");
         System.out.println("Edit User:\n" +
                 "Please select a function:\n" +
@@ -58,6 +59,7 @@ public class EditUser {
         int choice;
             choice = Input.nextInt();
             Input.nextLine();
+            //switch statement to get the correct section to edit which calls that specific function
             switch (choice) {
                 case 1:
                     userFName();
@@ -83,6 +85,7 @@ public class EditUser {
                 case 8:
                     break;
                 default:
+                    //data validation
                     System.out.println("That was not a valid input please try again\n");
                     editUser();
             }
@@ -90,16 +93,19 @@ public class EditUser {
     }
 
     public static void userFName() {
+        //database connection
         Connection conn = connect();
 
         System.out.println("Please enter a new first name: ");
         String uFName = Input.nextLine();
+        //edit string
         String sql = "UPDATE Users SET User_FName = ? WHERE User_Email = ?";
         try
         {
             PreparedStatement pstmt = conn.prepareStatement(sql);
             pstmt.setString(1, uFName);
             pstmt.setString(2, Email);
+            //execution of edit string
             pstmt.executeUpdate();
             System.out.println("Update successful!");
         } catch (SQLException e) {
@@ -109,16 +115,19 @@ public class EditUser {
     }
 
     public static void userLName() {
+        //database connection
         Connection conn = connect();
 
         System.out.println("Please enter a new last name: ");
         String uLName = Input.nextLine();
+        //edit string
         String sql = "UPDATE Users SET User_LName = ? WHERE User_Email = ?";
         try
         {
             PreparedStatement pstmt = conn.prepareStatement(sql);
             pstmt.setString(1, uLName);
             pstmt.setString(2, Email);
+            //execution of edit string
             pstmt.executeUpdate();
             System.out.println("Update successful!");
         } catch (SQLException e) {
@@ -128,16 +137,19 @@ public class EditUser {
     }
 
     public static void userEmail() {
+        //database connection
         Connection conn = connect();
 
         System.out.println("Please enter a new email: ");
         String uEmail = Input.nextLine();
+        //edit string
         String sql = "UPDATE Users SET User_Email = ? WHERE User_Email = ?";
         try
         {
             PreparedStatement pstmt = conn.prepareStatement(sql);
             pstmt.setString(1, uEmail);
             pstmt.setString(2, Email);
+            //execution of edit string
             pstmt.executeUpdate();
             System.out.println("Update successful!");
         } catch (SQLException e) {
@@ -148,16 +160,19 @@ public class EditUser {
     }
 
     public static void userPassword() {
+        //database connection
         Connection conn = connect();
 
         System.out.println("Please enter a new password: ");
         String uPassword = Input.nextLine();
+        //edit string
         String sql = "UPDATE Users SET User_Password = ? WHERE User_Email = ?";
         try
         {
             PreparedStatement pstmt = conn.prepareStatement(sql);
             pstmt.setString(1, uPassword);
             pstmt.setString(2, Email);
+            //execution of edit string
             pstmt.executeUpdate();
             System.out.println("Update successful!");
         } catch (SQLException e) {
@@ -167,16 +182,19 @@ public class EditUser {
     }
 
     public static void userDOB() {
+        //database connection
         Connection conn = connect();
 
         System.out.println("Please enter a new date of birth (DD/MM/YYYY): ");
         String uDOB = Input.nextLine();
+        //edit string
         String sql = "UPDATE Users SET User_DOB = ? WHERE User_Email = ?";
         try
         {
             PreparedStatement pstmt = conn.prepareStatement(sql);
             pstmt.setString(1, uDOB);
             pstmt.setString(2, Email);
+            //execution of edit string
             pstmt.executeUpdate();
             System.out.println("Update successful!");
         } catch (SQLException e) {
@@ -186,16 +204,19 @@ public class EditUser {
     }
 
     public static void userPhoneNumber() {
+        //database connection
         Connection conn = connect();
 
         System.out.println("Please enter a new phone number: ");
         int uPhoneNumber = Input.nextInt();
+        //edit string
         String sql = "UPDATE Users SET User_PhoneNumber = ? WHERE User_Email = ?";
         try
         {
             PreparedStatement pstmt = conn.prepareStatement(sql);
             pstmt.setInt(1, uPhoneNumber);
             pstmt.setString(2, Email);
+            //execution of edit string
             pstmt.executeUpdate();
             System.out.println("Update successful!");
         } catch (SQLException e) {
@@ -205,16 +226,19 @@ public class EditUser {
     }
 
     public static void userRole() {
+        //database connection
         Connection conn = connect();
 
         System.out.println("Please enter a new role: ");
         String uRole = Input.nextLine();
+        //edit string
         String sql = "UPDATE Users SET User_Role = ? WHERE User_Email = ?";
         try
         {
             PreparedStatement pstmt = conn.prepareStatement(sql);
             pstmt.setString(1, uRole);
             pstmt.setString(2, Email);
+            //execution of edit string
             pstmt.executeUpdate();
             System.out.println("Update successful!");
         } catch (SQLException e) {

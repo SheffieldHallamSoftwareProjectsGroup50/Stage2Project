@@ -4,18 +4,14 @@ import java.sql.SQLException;
 
 public class DatabaseConnection {
 
-
+//The connection class for all the connections needed in the project
     public static void main (String [] args)
     {
-
         Connection conn = connect();
-
-
     }
 
 
     private static Connection connect(){
-
         String fileName = "Stage2Database.db";
         String url = "jdbc:sqlite:" + fileName;
         // SQLite connection string

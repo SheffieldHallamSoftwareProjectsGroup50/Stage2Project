@@ -3,31 +3,26 @@ import java.util.ArrayList;
 import java.util.Scanner;
 
 public class SearchUsers {
-
+//main function to call the search function
     public static void main (String [] args)
     {
         Scanner keyboard = new Scanner(System.in);
         System.out.println("Enter User ID ");
         String userID = keyboard.nextLine();
 
-
         SearchUsers userSearch = new SearchUsers();
         userSearch.queryUsers(userID);
-
-
     }
-
+//search function
     public void queryUsers(String Search){
-
+        //Database connection
         Connection conn = connect();
 
         ArrayList<ArrayList<Object>> data;
 
         try {
-
+            //search string
             String sql = "SELECT User_ID,User_FName,User_LName,User_Email,User_Password,User_DOB,User_PhoneNumber,User_Role FROM Users WHERE User_ID = ?";
-
-
             PreparedStatement sqlStatement  = conn.prepareStatement(sql);
 
             sqlStatement.setString(1,Search);
@@ -57,13 +52,10 @@ public class SearchUsers {
                     rec.add(uPhoneNumber);
                     rec.add(uRole);
 
-
                     data.add(rec);
-
                 }
             }
             printData(data);
-
 
         } catch (SQLException e) {
             System.out.println(e.getMessage());
@@ -76,16 +68,10 @@ public class SearchUsers {
                 System.out.println(ex.getMessage());
             }
         }
-
-
-
     }
 
-
-
-
+//Database connection function
     private static Connection connect(){
-
         String fileName = "Stage2Database.db";
         String url = "jdbc:sqlite:" + fileName;
         // SQLite connection string
@@ -98,7 +84,7 @@ public class SearchUsers {
         return conn;
     }
 
-
+    //Function to print the searched details
     public static void printData (ArrayList<ArrayList<Object>> data)
     {
         System.out.print("User ID: User FName:  User LName:     User Email:           User Password:   User DOB:    User PhoneNumber:  User Role:\n");
@@ -112,5 +98,4 @@ public class SearchUsers {
             System.out.println();
         }
     }
-
 }

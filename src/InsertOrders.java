@@ -5,16 +5,15 @@ import java.sql.SQLException;
 import java.util.Scanner;
 
 public class InsertOrders {
-
+//function to insert orders into database
     public static void main (String [] args)
     {
         Scanner keyboard = new Scanner(System.in);
-
+        //database connection
         Connection conn = connect();
 
         try {
-
-
+            //creation of new order string
             String sql = "INSERT INTO Orders (User_ID,Order_Date,Order_Status,Extra_Comments) VALUES(?,?,?,?)";
 
             System.out.println("User ID: ");
@@ -26,19 +25,13 @@ public class InsertOrders {
             System.out.println("Extra Comments: ");
             String extraComments = keyboard.nextLine();
 
-
-
             PreparedStatement pstmt = conn.prepareStatement(sql);
             pstmt.setString(1, oUser);
             pstmt.setString(2, oDate);
             pstmt.setString(3, oStatus);
             pstmt.setString(4, extraComments);
-
-
-
-
+            //execution of insert string
             pstmt.executeUpdate();
-
 
         } catch (SQLException e) {
             System.out.println(e.getMessage());
@@ -54,13 +47,8 @@ public class InsertOrders {
 
     }
 
-
-
-
-
-
+//database connection function
     private static Connection connect(){
-
         String fileName = "Stage2Database.db";
         String url = "jdbc:sqlite:" + fileName;
         Connection conn = null;

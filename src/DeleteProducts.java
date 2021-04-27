@@ -8,6 +8,7 @@ public class DeleteProducts {
 
     public static void main (String [] args)
     {
+        //function for deleting of products
         Scanner keyboard = new Scanner(System.in);
         ViewProducts view = new ViewProducts();
 
@@ -15,7 +16,6 @@ public class DeleteProducts {
         view.main(args);
         System.out.println("Enter the ID: ");
         int deleteID = keyboard.nextInt();
-
 
         DeleteProducts delete = new DeleteProducts();
         delete.deleteRecord(deleteID);
@@ -25,17 +25,16 @@ public class DeleteProducts {
     }
 
     public void deleteRecord(int Product_ID){
-
+    //connection to the database
         Connection conn = connect();
         String sql = "DELETE FROM Products WHERE Product_ID = ?";
-
-
-
+        //deletion string
         try {
 
             PreparedStatement pstmt = conn.prepareStatement(sql);
 
             pstmt.setInt(1, Product_ID);
+            //execution of deletion string
             pstmt.executeUpdate();
             System.out.println("A record has been deleted");
 

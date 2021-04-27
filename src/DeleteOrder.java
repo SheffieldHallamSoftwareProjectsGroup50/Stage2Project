@@ -8,6 +8,7 @@ public class DeleteOrder {
 
     public static void main (String [] args)
     {
+        //Main start up function to delete orders from the database
         Scanner keyboard = new Scanner(System.in);
         ViewOrders view = new ViewOrders();
 
@@ -25,17 +26,16 @@ public class DeleteOrder {
     }
 
     public void deleteRecord(int Order_ID){
-
+        //database connection
         Connection conn = connect();
+        //deletion string
         String sql = "DELETE FROM Orders WHERE Order_ID = ?";
-
-
 
         try {
 
             PreparedStatement pstmt = conn.prepareStatement(sql);
-
             pstmt.setInt(1, Order_ID);
+            //executed deletion string
             pstmt.executeUpdate();
             System.out.println("A record has been deleted");
 

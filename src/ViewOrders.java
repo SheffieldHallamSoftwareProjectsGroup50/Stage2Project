@@ -4,11 +4,11 @@ import java.util.ArrayList;
 public class ViewOrders {
     public static void main (String [] args)
     {
-
+        //Database connection
         Connection conn = connect();
         ArrayList<ArrayList<Object>> data;
-
         try {
+            //View string
             String sql = "SELECT Order_ID,User_ID,Order_Date,Order_Status,Extra_Comments  FROM Orders";
 
             Statement stmt  = conn.createStatement();
@@ -32,16 +32,10 @@ public class ViewOrders {
                     rec.add(oStatus);
                     rec.add(eComments);
 
-
-
-
                     data.add(rec);
-
                 }
             }
-
             printData(data);
-
         } catch (SQLException e) {
             System.out.println(e.getMessage());
         } finally {
@@ -55,13 +49,8 @@ public class ViewOrders {
         }
     }
 
-
-
-
-
-
+    //database connection function
     private static Connection connect(){
-
         String fileName = "Stage2Database.db";
         String url = "jdbc:sqlite:" + fileName;
         // SQLite connection string
@@ -75,6 +64,7 @@ public class ViewOrders {
         return conn;
     }
 
+    //Function to display the orders to the user
     public static void printData (ArrayList<ArrayList<Object>> data)
     {
         for (int i=0; i<data.size(); i++)
@@ -87,12 +77,4 @@ public class ViewOrders {
             System.out.println();
         }
     }
-
-
-
-
-
-
-
-
 }

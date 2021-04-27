@@ -9,13 +9,13 @@ import java.text.DateFormat;
 
 
 public class UserLogin {
-
+//main function just to call the register function
     public static void main (String [] args) {
         Register();
     }
 
+    //Database connection function
     private static Connection connect(){
-
         String fileName = "Stage2Database.db";
         String url = "jdbc:sqlite:" + fileName;
         // SQLite connection string
@@ -28,9 +28,10 @@ public class UserLogin {
         return conn;
     }
 
+    //function to log the user into the system
     public static void Login() {
-
         Scanner Input = new Scanner(System.in);
+        //Database connection
         Connection conn = connect();
 
         String databaseEmail = "";
@@ -41,12 +42,12 @@ public class UserLogin {
         System.out.println("    User Login    ");
         System.out.println("------------------");
 
-
         System.out.println("Email: ");
         String email = Input.nextLine();
         System.out.println("Password: ");
         String password = Input.nextLine();
 
+        //Retrieves login details
         try(PreparedStatement stmt = conn.prepareStatement("SELECT * FROM Users WHERE User_Email=(?) AND User_Password=(?)")) {
 
             stmt.setString(1, email);
@@ -60,8 +61,8 @@ public class UserLogin {
                 databaseRole = rs.getString("User_Role");
             }
 
+            //Data validation to test the input from the details
             if (email.equals(databaseEmail) && password.equals(databasePassword)) {
-
                   if (databaseRole.equals("Manager")) {
                     conn.close();
                     Main.ManagerMenu();
@@ -89,9 +90,8 @@ public class UserLogin {
             System.out.println("Fail!");
 
         }
-
     }
-
+    //register function to register new users
         public static void Register() {
 
         Scanner Input = new Scanner(System.in);
@@ -148,6 +148,7 @@ public class UserLogin {
         String uRole = "Customer";
 
         try {
+            //Insertion string
             String sql = "INSERT INTO Users  (User_Fname,User_LName,User_Email,User_Password,User_DOB,User_PhoneNumber,User_Role) VALUES(?,?,?,?,?,?,?)";
 
             PreparedStatement pstmt = conn.prepareStatement(sql);
@@ -159,6 +160,7 @@ public class UserLogin {
             pstmt.setString(6,uPhoneNumber);
             pstmt.setString(7,uRole);
 
+            //Execution of insertion string
             pstmt.executeUpdate();
             Main.CustomerMenu();
 
@@ -175,6 +177,7 @@ public class UserLogin {
         }
     }
 
+    //Function to check if the email that is being registered is valid
     public static boolean isEmailValid(String email)
     {
         String emailRegex = "^[a-zA-Z0-9_+&*-]+(?:\\."+
@@ -188,6 +191,7 @@ public class UserLogin {
         return pattern.matcher(email).matches();
     }
 
+    //more data validation
     public static boolean isDateValid(String date) {
         String dateRegex = "(^(((0[1-9]|1[0-9]|2[0-8])[\\/](0[1-9]|1[012]))|((29|30|31)[\\/](0[13578]|1[02]))|((29|30)[\\/](0[4,6,9]|11)))[\\/](19|[2-9][0-9])\\d\\d$)|(^29[\\/]02[\\/](19|[2-9][0-9])(00|04|08|12|16|20|24|28|32|36|40|44|48|52|56|60|64|68|72|76|80|84|88|92|96)$)";
         Pattern pattern = Pattern.compile(dateRegex);

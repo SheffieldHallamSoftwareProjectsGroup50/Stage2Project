@@ -3,7 +3,7 @@ import java.util.ArrayList;
 import java.util.Scanner;
 
 public class SearchProducts {
-
+//main function to call the search function
     public static void main (String [] args)
     {
         Scanner keyboard = new Scanner(System.in);
@@ -12,18 +12,16 @@ public class SearchProducts {
 
         SearchProducts productSearch = new SearchProducts();
         productSearch.queryProducts(searchTerm);
-
-
     }
 
+//search function
     public void queryProducts(String Search){
         Scanner searchChoice = new Scanner(System.in);
+        //database connection
         Connection conn = connect();
 
         ArrayList<ArrayList<Object>> data;
-
         try {
-
             String sql = null;
             Scanner keyboard = new Scanner(System.in);
 
@@ -74,14 +72,10 @@ public class SearchProducts {
                     rec.add(pStatus);
                     rec.add(pAvailability);
 
-
                     data.add(rec);
-
                 }
             }
             printData(data);
-
-
 
         } catch (SQLException e) {
             System.out.println(e.getMessage());
@@ -94,14 +88,9 @@ public class SearchProducts {
                 System.out.println(ex.getMessage());
             }
         }
-
-
-
     }
 
-
-
-
+//database connection function
     private static Connection connect(){
 
         String fileName = "Stage2Database.db";
@@ -115,7 +104,7 @@ public class SearchProducts {
         return conn;
     }
 
-
+//print function to display the data to the user
     public static void printData (ArrayList<ArrayList<Object>> data)
     {
         System.out.print("Product ID:  Product Name:  Product Category:  Product Description:  Product Supplier:  Product Price:  Product Quantity:  Product Status:  Availability:\n");
@@ -129,5 +118,4 @@ public class SearchProducts {
             System.out.println();
         }
     }
-
 }

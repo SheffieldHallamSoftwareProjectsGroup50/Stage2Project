@@ -5,11 +5,11 @@ import java.sql.SQLException;
 import java.util.Scanner;
 
 public class InsertProducts {
-
+//function to insert new products into the database
     public static void main (String [] args)
     {
         Scanner keyboard = new Scanner(System.in);
-
+        //database connection
         Connection conn = connect();
 
         try {
@@ -30,7 +30,7 @@ public class InsertProducts {
             String pStatus = keyboard.nextLine();
             System.out.println("Availability: ");
             String pAvailability = keyboard.nextLine();
-
+            //insertion string
             String sql = "INSERT INTO Products (Product_Name,Product_Category, Product_Description,Product_Supplier,Product_Price,Product_Quantity,Product_Status,Availability) VALUES(?,?,?,?,?,?,?,?)";
 
             PreparedStatement pstmt = conn.prepareStatement(sql);
@@ -42,11 +42,8 @@ public class InsertProducts {
             pstmt.setInt(6, pQuantity);
             pstmt.setString(7, pStatus );
             pstmt.setString(8, pAvailability);
-
-
-
+            //execution of insertion string
             pstmt.executeUpdate();
-
 
         } catch (SQLException e) {
             System.out.println(e.getMessage());
@@ -62,11 +59,7 @@ public class InsertProducts {
 
     }
 
-
-
-
-
-
+//database connection function
     private static Connection connect(){
 
         String fileName = "Stage2Database.db";

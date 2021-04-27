@@ -5,16 +5,16 @@ import java.sql.SQLException;
 import java.util.Scanner;
 
 public class InsertUser {
-
+//function to insert new users into the database
     public static void main (String [] args)
     {
         Scanner keyboard = new Scanner(System.in);
         Scanner userChoice = new Scanner(System.in);
+        //database connection
         Connection conn = connect();
 
         try {
-
-
+            //insertion string
             String sql = "INSERT INTO Users  (User_Fname,User_LName,User_Email,User_Password,User_DOB,User_PhoneNumber,User_Role) VALUES(?,?,?,?,?,?,?)";
 
             System.out.println("First Name: ");
@@ -51,8 +51,6 @@ public class InsertUser {
                     System.out.println("That was not a valid input please try again");
             }
 
-
-
             PreparedStatement pstmt = conn.prepareStatement(sql);
             pstmt.setString(1, uFName);
             pstmt.setString(2,uLName);
@@ -61,12 +59,8 @@ public class InsertUser {
             pstmt.setString(5,uDOB);
             pstmt.setString(6,uPhoneNumber);
             pstmt.setString(7,uRole);
-
-
-
-
+            //execution of insertion string
             pstmt.executeUpdate();
-
 
         } catch (SQLException e) {
             System.out.println(e.getMessage());
@@ -82,11 +76,7 @@ public class InsertUser {
 
     }
 
-
-
-
-
-
+//database connection function
     private static Connection connect(){
 
         String fileName = "Stage2Database.db";

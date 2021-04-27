@@ -8,6 +8,7 @@ public class DeleteWarehouse {
 
     public static void main (String [] args)
     {
+        //function for deletion of warehouse
         Scanner keyboard = new Scanner(System.in);
         ViewWarehouses view = new ViewWarehouses();
 
@@ -25,17 +26,17 @@ public class DeleteWarehouse {
     }
 
     public void deleteRecord(int Warehouse_ID){
-
+        //database connection
         Connection conn = connect();
+        //deletion string
         String sql = "DELETE FROM Warehouses WHERE Warehouse_ID = ?";
-
-
 
         try {
 
             PreparedStatement pstmt = conn.prepareStatement(sql);
 
             pstmt.setInt(1, Warehouse_ID);
+            //execution of deletion string
             pstmt.executeUpdate();
             System.out.println("A record has been deleted");
 

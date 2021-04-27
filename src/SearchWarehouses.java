@@ -3,30 +3,26 @@ import java.util.ArrayList;
 import java.util.Scanner;
 
 public class SearchWarehouses {
-
+//Function to call the search functions
     public static void main (String [] args)
     {
         Scanner keyboard = new Scanner(System.in);
         System.out.println("Enter Warehouse Name: ");
         String warehouseName = keyboard.nextLine();
 
-
         SearchWarehouses warehouseSearch = new SearchWarehouses();
         warehouseSearch.queryWarehouse(warehouseName);
-
-
     }
 
+    //Search function
     public void queryWarehouse(String Search){
-
+        //Database connection
         Connection conn = connect();
 
         ArrayList<ArrayList<Object>> data;
-
         try {
-
+            //Search string
             String sql = "SELECT Warehouse_ID, Warehouse_Name,Warehouse_Location,Warehouse_AvailableSpace,Warehouse_UsedSpace FROM Warehouses WHERE Warehouse_Name = ?";
-
 
             PreparedStatement sqlStatement  = conn.prepareStatement(sql);
 
@@ -35,7 +31,6 @@ public class SearchWarehouses {
             data = new ArrayList<ArrayList<Object>>();
             ResultSet res = sqlStatement.executeQuery();
             {
-
                 while (res.next()) {
 
                     int wID = res.getInt("Warehouse_ID");
@@ -44,7 +39,6 @@ public class SearchWarehouses {
                     int wAvailableSpace = res.getInt("Warehouse_AvailableSpace");
                     int wUsedSpace = res.getInt("Warehouse_UsedSpace");
 
-
                     ArrayList<Object> rec = new ArrayList<Object>();
                     rec.add(wID);
                     rec.add(wName);
@@ -52,14 +46,10 @@ public class SearchWarehouses {
                     rec.add(wAvailableSpace);
                     rec.add(wUsedSpace);
 
-
                     data.add(rec);
-
                 }
             }
             printData(data);
-
-
 
         } catch (SQLException e) {
             System.out.println(e.getMessage());
@@ -72,16 +62,10 @@ public class SearchWarehouses {
                 System.out.println(ex.getMessage());
             }
         }
-
-
-
     }
 
-
-
-
-    private static Connection connect(){
-
+    //Database connection function
+    private static Connection connect () {
         String fileName = "Stage2Database.db";
         String url = "jdbc:sqlite:" + fileName;
         Connection conn = null;
@@ -93,7 +77,7 @@ public class SearchWarehouses {
         return conn;
     }
 
-
+    //Function to print the searched data to the user
     public static void printData (ArrayList<ArrayList<Object>> data)
     {
         System.out.print("Warehouse ID:  Warehouse Name:     Warehouse Location:      Available Space: Used Space\n");
@@ -107,5 +91,4 @@ public class SearchWarehouses {
             System.out.println();
         }
     }
-
 }

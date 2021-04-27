@@ -4,11 +4,12 @@ import java.util.ArrayList;
 public class ViewWarehouses {
     public static void main (String [] args)
     {
-
+        //Database connection
         Connection conn = connect();
         ArrayList<ArrayList<Object>> data;
 
         try {
+            //Search string
             String sql = "SELECT Warehouse_ID,Warehouse_Name,Warehouse_Location,Warehouse_AvailableSpace,Warehouse_UsedSpace FROM Warehouses";
 
             Statement stmt  = conn.createStatement();
@@ -16,9 +17,7 @@ public class ViewWarehouses {
 
             ResultSet res = stmt.executeQuery(sql);
             {
-
                 while (res.next()) {
-
 
                     int wID = res.getInt("Warehouse_ID");
                     String wName = res.getString("Warehouse_Name");
@@ -33,16 +32,10 @@ public class ViewWarehouses {
                     rec.add(wAvailableSpace);
                     rec.add(wUsedSpace);
 
-
-
-
                     data.add(rec);
-
                 }
             }
-
             printData(data);
-
         } catch (SQLException e) {
             System.out.println(e.getMessage());
         } finally {
@@ -56,13 +49,8 @@ public class ViewWarehouses {
         }
     }
 
-
-
-
-
-
-    private static Connection connect(){
-
+    //Database connection function
+    private static Connection connect () {
         String fileName = "Stage2Database.db";
         String url = "jdbc:sqlite:" + fileName;
         Connection conn = null;
@@ -74,6 +62,7 @@ public class ViewWarehouses {
         return conn;
     }
 
+    //Function to display the warehouses in the database
     public static void printData (ArrayList<ArrayList<Object>> data)
     {
         for (int i=0; i<data.size(); i++)
@@ -86,12 +75,4 @@ public class ViewWarehouses {
             System.out.println();
         }
     }
-
-
-
-
-
-
-
-
 }

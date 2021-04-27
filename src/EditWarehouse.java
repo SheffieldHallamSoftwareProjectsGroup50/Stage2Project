@@ -9,8 +9,14 @@ public class EditWarehouse {
     public static String WarehouseName;
     static public Scanner Input = new Scanner(System.in);
 
+    public static void main(String[] args) {
+        //Get function to get the details of the warehouse
+        WarehouseName();
+        //Function to edit the details of the warehouse
+        editWarehouse();
+    }
+//database connection funtion
     public static Connection connect() {
-
         String fileName = "Stage2Database.db";
         String url = "jdbc:sqlite:" + fileName;
         Connection conn = null;
@@ -21,18 +27,14 @@ public class EditWarehouse {
         }
         return conn;
     }
-
+//get function to return the warehouse to edit
     public static String WarehouseName() {
         System.out.println("\nPlease enter the name of the warehouse you would like to edit: \n");
         WarehouseName = Input.nextLine();
         return WarehouseName;
     }
 
-    public static void main(String[] args) {
-        WarehouseName();
-        editWarehouse();
-    }
-
+//function to edit the warehouse
     public static void editWarehouse() {
 
         System.out.println("\nYou are currently editing warehouse " + WarehouseName + ".\n");
@@ -52,6 +54,7 @@ public class EditWarehouse {
         int choice;
             choice = Input.nextInt();
             Input.nextLine();
+            //switch statement sends the user to the function of editing the specific details of the warehouse
             switch (choice) {
                 case 1:
                     warehouseName();
@@ -68,21 +71,25 @@ public class EditWarehouse {
                 case 5:
                     break;
                 default:
+                    //data validation
                     System.out.println("That was not a valid input please try again\n");
                     editWarehouse();
             }
     }
 
     public static void warehouseName() {
+        //database connection
         Connection conn = connect();
 
         System.out.println("Please enter the new warehouse name: ");
         String wName = Input.nextLine();
+        //edit string
         String sql = "UPDATE Warehouses SET Warehouse_Name = ? WHERE Warehouse_Name = ?";
         try {
             PreparedStatement pstmt = conn.prepareStatement(sql);
             pstmt.setString(1, wName);
             pstmt.setString(2, WarehouseName);
+            //execution of edit string
             pstmt.executeUpdate();
             System.out.println("Update successful!");
         } catch (SQLException e) {
@@ -93,15 +100,18 @@ public class EditWarehouse {
     }
 
     public static void warehouseLocation() {
+        //database connection
         Connection conn = connect();
 
         System.out.println("Please enter the new warehouse location: ");
         String wLocation = Input.nextLine();
+        //edit string
         String sql = "UPDATE Warehouses SET Warehouse_Location = ? WHERE Warehouse_Name = ?";
         try {
             PreparedStatement pstmt = conn.prepareStatement(sql);
             pstmt.setString(1, wLocation);
             pstmt.setString(2, WarehouseName);
+            //execution of edit string
             pstmt.executeUpdate();
             System.out.println("Update successful!");
         } catch (SQLException e) {
@@ -111,15 +121,18 @@ public class EditWarehouse {
     }
 
     public static void warehouseAvailableSpace() {
+        //database connection
         Connection conn = connect();
 
         System.out.println("Please enter the new warehouse available space: ");
         String wAvailableSpace = Input.nextLine();
+        //edit string
         String sql = "UPDATE Warehouses SET Warehouse_AvailableSpace = ? WHERE Warehouse_Name = ?";
         try {
             PreparedStatement pstmt = conn.prepareStatement(sql);
             pstmt.setString(1, wAvailableSpace);
             pstmt.setString(2, WarehouseName);
+            //execution of edit string
             pstmt.executeUpdate();
             System.out.println("Update successful!");
         } catch (SQLException e) {
@@ -129,15 +142,18 @@ public class EditWarehouse {
     }
 
     public static void warehouseUsedSpace() {
+        //database connection
         Connection conn = connect();
 
         System.out.println("Please enter the new warehouse used space: ");
         String wUsedSpace = Input.nextLine();
+        //edit string
         String sql = "UPDATE Warehouses SET Warehouse_UsedSpace = ? WHERE Warehouse_Name = ?";
         try {
             PreparedStatement pstmt = conn.prepareStatement(sql);
             pstmt.setString(1, wUsedSpace);
             pstmt.setString(2, WarehouseName);
+            //execution of edit string
             pstmt.executeUpdate();
             System.out.println("Update successful!");
         } catch (SQLException e) {

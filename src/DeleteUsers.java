@@ -8,6 +8,7 @@ public class DeleteUsers {
 
     public static void main (String [] args)
     {
+        //deletion of user function
         Scanner keyboard = new Scanner(System.in);
         ViewUsers view = new ViewUsers();
 
@@ -25,17 +26,17 @@ public class DeleteUsers {
     }
 
     public void deleteRecord(int User_ID){
-
+        //connection to database
         Connection conn = connect();
+        //deletion string
         String sql = "DELETE FROM Users WHERE User_ID = ?";
-
-
 
         try {
 
             PreparedStatement pstmt = conn.prepareStatement(sql);
 
             pstmt.setInt(1, User_ID);
+            //execution of deletion string
             pstmt.executeUpdate();
             System.out.println("A record has been deleted");
 
