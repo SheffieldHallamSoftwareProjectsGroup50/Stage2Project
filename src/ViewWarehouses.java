@@ -47,7 +47,7 @@ public class ViewWarehouses {
                 System.out.println(ex.getMessage());
             }
         }
-        Main.returnHome(department);
+
     }
 
     //Database connection function

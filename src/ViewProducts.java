@@ -54,7 +54,7 @@ public class ViewProducts {
                 System.out.println(ex.getMessage());
             }
         }
-        Main.returnHome(department);
+
     }
 
     //Database connection function

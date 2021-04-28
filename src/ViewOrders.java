@@ -47,7 +47,6 @@ public class ViewOrders {
                 System.out.println(ex.getMessage());
             }
         }
-        Main.returnHome(department);
     }
 
     //database connection function

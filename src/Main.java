@@ -101,6 +101,7 @@ public class Main {
                 break;
             case 3:
                 ViewOrders.main(department);
+                ProductionMenu();
                 break;
             case 4:
                 contactPurchasing(department);
@@ -133,9 +134,11 @@ public class Main {
         switch (purchasingChoice.nextInt()) {
             case 1:
                 ViewProducts.main(department);
+                PurchasingMenu();
                 break;
             case 2:
                 ViewWarehouses.main(department);
+                PurchasingMenu();
                 break;
             case 3:
                 managePurchases(department);
@@ -175,12 +178,15 @@ public class Main {
                 break;
             case 2:
                 ViewProducts.main(department);
+                SalesMenu();
                 break;
             case 3:
                 ViewWarehouses.main(department);
+                SalesMenu();
                 break;
             case 4:
                 ViewOrders.main(department);
+                SalesMenu();
                 break;
             case 5:
                 logOut();
