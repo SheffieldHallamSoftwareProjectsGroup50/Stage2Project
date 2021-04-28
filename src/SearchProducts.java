@@ -4,7 +4,7 @@ import java.util.Scanner;
 
 public class SearchProducts {
 //main function to call the search function
-    public static void main (String [] args)
+    public static void main (String department)
     {
         Scanner keyboard = new Scanner(System.in);
         System.out.println("Enter Search Term: ");
@@ -12,6 +12,7 @@ public class SearchProducts {
 
         SearchProducts productSearch = new SearchProducts();
         productSearch.queryProducts(searchTerm);
+        Main.returnHome(department);
     }
 
 //search function
@@ -88,7 +89,6 @@ public class SearchProducts {
                 System.out.println(ex.getMessage());
             }
         }
-        Main.CustomerMenu();
     }
 
 //database connection function

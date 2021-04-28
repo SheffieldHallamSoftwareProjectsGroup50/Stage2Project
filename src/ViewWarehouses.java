@@ -2,7 +2,7 @@ import java.sql.*;
 import java.util.ArrayList;
 
 public class ViewWarehouses {
-    public static void main (String [] args)
+    public static void main (String department)
     {
         //Database connection
         Connection conn = connect();
@@ -47,6 +47,7 @@ public class ViewWarehouses {
                 System.out.println(ex.getMessage());
             }
         }
+        Main.returnHome(department);
     }
 
     //Database connection function

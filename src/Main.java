@@ -100,7 +100,7 @@ public class Main {
                 manageWarehouseInformation(department);
                 break;
             case 3:
-                ViewOrders.main(null);
+                ViewOrders.main(department);
                 break;
             case 4:
                 contactPurchasing(department);
@@ -132,10 +132,10 @@ public class Main {
                 "Press 5: To log out\n");
         switch (purchasingChoice.nextInt()) {
             case 1:
-                ViewProducts.main(null);
+                ViewProducts.main(department);
                 break;
             case 2:
-                ViewWarehouses.main(null);
+                ViewWarehouses.main(department);
                 break;
             case 3:
                 managePurchases(department);
@@ -174,13 +174,13 @@ public class Main {
                 manageInquiries(department);
                 break;
             case 2:
-                ViewProducts.main(null);
+                ViewProducts.main(department);
                 break;
             case 3:
-                ViewWarehouses.main(null);
+                ViewWarehouses.main(department);
                 break;
             case 4:
-                ViewOrders.main(null);
+                ViewOrders.main(department);
                 break;
             case 5:
                 logOut();
@@ -209,7 +209,7 @@ public class Main {
                 "Press 4: To log out");
         switch (customerChoice.nextInt()) {
             case 1:
-                SearchProducts.main(null);
+                SearchProducts.main(department);
                 break;
             case 2:
                 Inquiries.inquire();
@@ -428,7 +428,7 @@ public class Main {
 
         }
 
-        private static void returnHome(String department){
+        public static void returnHome(String department){
         //This will return the User to their department's menu.
             if (department.equals("Manager")) {
                 ManagerMenu();
@@ -438,6 +438,8 @@ public class Main {
                 ProductionMenu();
             } else if (department.equals("Purchasing")) {
                 ProductionMenu();
+            }else if (department.equals("Customer")) {
+                    CustomerMenu();
             } else {
                 main(null);
             }

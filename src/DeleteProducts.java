@@ -13,7 +13,7 @@ public class DeleteProducts {
         ViewProducts view = new ViewProducts();
 
         System.out.println("Which product would you like to delete");
-        view.main(args);
+        view.main(null);
         System.out.println("Enter the ID: ");
         int deleteID = keyboard.nextInt();
 
