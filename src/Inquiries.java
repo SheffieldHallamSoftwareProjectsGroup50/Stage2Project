@@ -5,8 +5,7 @@ import java.util.Scanner;
 public class Inquiries {
     //main function that calls to view the Inquiries
     public static void main(String[] args) {
-        viewInquiries();
-        viewReplies();
+
     }
 
     //Function that sends the inquiry to the database
@@ -64,7 +63,7 @@ public class Inquiries {
     }
 
     //Function to view all the inquiries
-    public static void viewInquiries() {
+    public static void viewInquiries(String department) {
         //Database connection
         Connection conn = connect();
         ArrayList<ArrayList<Object>> data;
@@ -102,10 +101,11 @@ public class Inquiries {
                 System.out.println(ex.getMessage());
             }
         }
+        Main.returnHome(department);
     }
 
     //function to allow the user to reply to an inquiry
-    public static void reply() {
+    public static void reply(String department) {
         Scanner userChoice = new Scanner(System.in);
         String category = "Empty";
 
@@ -118,7 +118,7 @@ public class Inquiries {
                 category = "Store Search Error";
                 break;
             case 3:
-                viewInquiries();
+                viewInquiries(department);
                 category = "Other";
                 break;
             case 4:
@@ -155,6 +155,7 @@ public class Inquiries {
                 System.out.println(ex.getMessage());
             }
         }
+        Main.returnHome(department);
     }
 
     //Function for the user to view all the replies

@@ -246,19 +246,19 @@ public class Main {
                 "Press 6: To return Home");
         switch (productChoice.nextInt()) {
             case 1:
-                InsertProducts.main(null);
+                InsertProducts.main(department);
                 break;
             case 2:
-                SearchProducts.main(null);
+                SearchProducts.main(department);
                 break;
             case 3:
-                DeleteProducts.main(null);
+                DeleteProducts.main(department);
                 break;
             case 4:
-                ViewProducts.main(null);
+                ViewProducts.main(department);
                 break;
             case 5:
-                EditProducts.main(null);
+                EditProducts.main(department);
                 break;
             case 6:
                 returnHome(department);
@@ -290,19 +290,19 @@ public class Main {
                     "Press 6: To return Home");
             switch (warehouseChoice.nextInt()) {
                 case 1:
-                    InsertWarehouse.main(null);
+                    InsertWarehouse.main(department);
                     break;
                 case 2:
-                    SearchWarehouses.main(null);
+                    SearchWarehouses.main(department);
                     break;
                 case 3:
-                    DeleteWarehouse.main(null);
+                    DeleteWarehouse.main(department);
                     break;
                 case 4:
-                    ViewWarehouses.main(null);
+                    ViewWarehouses.main(department);
                     break;
                 case 5:
-                    EditWarehouse.main(null);
+                    EditWarehouse.main(department);
                     break;
                 case 6:
                     returnHome(department);
@@ -335,19 +335,19 @@ public class Main {
                     "Press 6: To return Home");
             switch (purchaseChoice.nextInt()) {
                 case 1:
-                    InsertOrders.main(null);
+                    InsertOrders.main(department);
                     break;
                 case 2:
-                    SearchOrders.main(null);
+                    SearchOrders.main(department);
                     break;
                 case 3:
-                    DeleteOrder.main(null);
+                    DeleteOrder.main(department);
                     break;
                 case 4:
-                    ViewOrders.main(null);
+                    ViewOrders.main(department);
                     break;
                 case 5:
-                    EditOrders.main(null);
+                    EditOrders.main(department);
                     break;
                 case 6:
                     returnHome(department);
@@ -369,10 +369,10 @@ public class Main {
                     "Press 3: To Return Home\n");
             switch (inquiriesChoice.nextInt()) {
                 case 1:
-                    Inquiries.viewInquiries();
+                    Inquiries.viewInquiries(department);
                     break;
                 case 2:
-                    Inquiries.reply();
+                    Inquiries.reply(department);
                     break;
                 case 3:
                     returnHome(department);
@@ -403,19 +403,19 @@ public class Main {
                     "Press 6: To return Home");
             switch (purchaseChoice.nextInt()) {
                 case 1:
-                    InsertUser.main(null);
+                    InsertUser.main(department);
                     break;
                 case 2:
-                    SearchUsers.main(null);
+                    SearchUsers.main(department);
                     break;
                 case 3:
-                    DeleteUsers.main(null);
+                    DeleteUsers.main(department);
                     break;
                 case 4:
-                    ViewUsers.main(null);
+                    ViewUsers.main(department);
                     break;
                 case 5:
-                    EditUser.main(null);
+                    EditUser.main(department);
                     break;
                 case 6:
                     returnHome(department);
@@ -437,7 +437,7 @@ public class Main {
             } else if (department.equals("Production")) {
                 ProductionMenu();
             } else if (department.equals("Purchasing")) {
-                ProductionMenu();
+                PurchasingMenu();
             }else if (department.equals("Customer")) {
                     CustomerMenu();
             } else {

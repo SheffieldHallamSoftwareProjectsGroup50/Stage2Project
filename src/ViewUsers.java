@@ -2,7 +2,7 @@ import java.sql.*;
 import java.util.ArrayList;
 
 public class ViewUsers {
-    public static void main (String [] args)
+    public static void main (String department)
     {
         //database connection
         Connection conn = connect();

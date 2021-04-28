@@ -4,7 +4,7 @@ import java.util.Scanner;
 
 public class SearchUsers {
 //main function to call the search function
-    public static void main (String [] args)
+    public static void main (String department)
     {
         Scanner keyboard = new Scanner(System.in);
         System.out.println("Enter User ID ");

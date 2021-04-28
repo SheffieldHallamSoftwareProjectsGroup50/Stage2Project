@@ -9,7 +9,7 @@ public class EditOrders {
     public static String OrderID;
     static public Scanner Input = new Scanner(System.in);
 
-    public static void main(String[] args) {
+    public static void main(String department) {
         //Function for getting the order id
         orderID();
         //Function for editing the order

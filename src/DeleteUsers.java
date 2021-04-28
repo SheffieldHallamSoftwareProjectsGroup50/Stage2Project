@@ -6,14 +6,14 @@ import java.util.Scanner;
 
 public class DeleteUsers {
 
-    public static void main (String [] args)
+    public static void main (String department)
     {
         //deletion of user function
         Scanner keyboard = new Scanner(System.in);
         ViewUsers view = new ViewUsers();
 
         System.out.println("Which User would you like to delete");
-        view.main(args);
+        view.main(department);
         System.out.println("Enter the ID: ");
         int deleteID = keyboard.nextInt();
 

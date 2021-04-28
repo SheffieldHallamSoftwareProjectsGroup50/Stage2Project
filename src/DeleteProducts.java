@@ -6,14 +6,14 @@ import java.util.Scanner;
 
 public class DeleteProducts {
 
-    public static void main (String [] args)
+    public static void main (String department)
     {
         //function for deleting of products
         Scanner keyboard = new Scanner(System.in);
         ViewProducts view = new ViewProducts();
 
         System.out.println("Which product would you like to delete");
-        view.main(null);
+        view.main(department);
         System.out.println("Enter the ID: ");
         int deleteID = keyboard.nextInt();
 

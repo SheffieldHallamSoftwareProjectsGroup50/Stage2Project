@@ -6,7 +6,7 @@ import java.util.Scanner;
 
 public class InsertUser {
 //function to insert new users into the database
-    public static void main (String [] args)
+    public static void main (String department)
     {
         Scanner keyboard = new Scanner(System.in);
         Scanner userChoice = new Scanner(System.in);

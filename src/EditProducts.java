@@ -9,7 +9,7 @@ public class EditProducts {
 
     static public Scanner Input = new Scanner(System.in);
 
-    public static void main (String [] args) {
+    public static void main (String department) {
         //function for getting the product to edit
         userName();
         //function for editing product

@@ -6,14 +6,14 @@ import java.util.Scanner;
 
 public class DeleteOrder {
 
-    public static void main (String [] args)
+    public static void main (String department)
     {
         //Main start up function to delete orders from the database
         Scanner keyboard = new Scanner(System.in);
         ViewOrders view = new ViewOrders();
 
         System.out.println("Which order would you like to delete");
-        view.main(args);
+        view.main(department);
         System.out.println("Enter the ID: ");
         int deleteID = keyboard.nextInt();
 

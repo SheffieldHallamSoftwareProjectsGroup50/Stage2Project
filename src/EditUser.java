@@ -9,7 +9,7 @@ public class EditUser {
     public static String Email;
     static public Scanner Input = new Scanner(System.in);
 
-    public static void main (String [] args) {
+    public static void main (String department) {
         //Function to get user details to edit
         email();
         //Edit function to edit the details

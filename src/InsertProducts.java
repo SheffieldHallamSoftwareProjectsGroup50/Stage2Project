@@ -6,7 +6,7 @@ import java.util.Scanner;
 
 public class InsertProducts {
 //function to insert new products into the database
-    public static void main (String [] args)
+    public static void main (String department)
     {
         Scanner keyboard = new Scanner(System.in);
         //database connection

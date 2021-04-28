@@ -4,7 +4,7 @@ import java.util.Scanner;
 
 public class SearchWarehouses {
 //Function to call the search functions
-    public static void main (String [] args)
+    public static void main (String department)
     {
         Scanner keyboard = new Scanner(System.in);
         System.out.println("Enter Warehouse Name: ");
